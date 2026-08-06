@@ -1,0 +1,438 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Tentang ALGM Solutions — Unit layanan analisis geospasial SUA Fakultas Kehutanan dan Lingkungan IPB University. Visi, misi, dan nilai utama kami." />
+  <title>About Us &mdash; ALGM Solutions | IPB University</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            primary:   '#003366',
+            secondary: '#C0C0C0',
+            neutral:   '#E0E0E0',
+            surface:   '#00BFFF',
+            accent:    '#36454F',
+            charcoal:  '#2d3748',
+            mist:      '#f5f7fa',
+            success:   '#008000',
+            warning:   '#FFA500',
+          },
+          fontFamily: {
+            sans: ['Roboto', 'system-ui', 'sans-serif'],
+            mono: ['"JetBrains Mono"', 'ui-monospace', 'monospace'],
+          }
+        }
+      }
+    }
+  </script>
+  <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+  <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
+  <link rel="stylesheet" href="./css/style.css" />
+  <link rel="icon" type="image/png" href="./assets/logo.png" />
+</head>
+<body class="font-sans text-accent bg-white antialiased">
+
+  <!-- HEADER (same as index) -->
+  <header id="site-header" class="sticky top-0 z-[100] w-full transition-all duration-300 bg-white/95">
+    <div class="mx-auto max-w-[1280px] px-6 lg:px-8 flex items-center justify-between h-20">
+      <a href="./index.html" class="flex items-center gap-3 group">
+        <img src="./assets/logo.png" alt="Logo" class="h-12 w-12 object-contain" />
+        <div class="leading-tight">
+          <div class="font-bold text-primary tracking-tight text-lg">ALGM Solutions</div>
+          <div class="font-mono text-[11px] text-accent/70 tracking-wide uppercase">IPB University</div>
+        </div>
+      </a>
+      <nav class="hidden lg:flex items-center gap-7 text-sm">
+        <a class="nav-link" href="./index.html">Home</a>
+        <a class="nav-link" href="./about.html">About Us</a>
+        <a class="nav-link" href="./services.html">Services</a>
+        <a class="nav-link" href="./team.html">Our Team</a>
+        <a class="nav-link" href="./projects.html">Projects</a>
+        <a class="nav-link" href="./gallery.html">Gallery</a>
+        <a href="./contact.html" class="btn-primary !py-2.5 !px-5 ml-2">Contact Us</a>
+      </nav>
+      <button id="nav-open" aria-label="Buka menu" class="lg:hidden p-2 rounded-md hover:bg-mist text-primary">
+        <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+      </button>
+    </div>
+  </header>
+
+  <div id="drawer-backdrop" class="drawer-backdrop"></div>
+  <aside id="mobile-drawer" class="mobile-drawer">
+    <div class="flex items-center justify-between p-5 border-b border-neutral">
+      <div class="flex items-center gap-2">
+        <img src="./assets/logo.png" alt="Logo" class="h-10 w-10" />
+        <div>
+          <div class="font-bold text-primary">ALGM Solutions</div>
+          <div class="font-mono text-[10px] text-accent/60 uppercase">IPB University</div>
+        </div>
+      </div>
+      <button id="nav-close" class="p-2 rounded-md hover:bg-mist text-accent">
+        <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+      </button>
+    </div>
+    <nav class="flex flex-col p-4 gap-1 text-[15px]">
+      <a class="drawer-link px-3 py-3 rounded-md hover:bg-mist flex items-center gap-3" href="./index.html">Home</a>
+      <a class="drawer-link px-3 py-3 rounded-md hover:bg-mist flex items-center gap-3" href="./about.html">About Us</a>
+      <a class="drawer-link px-3 py-3 rounded-md hover:bg-mist flex items-center gap-3" href="./services.html">Services</a>
+      <a class="drawer-link px-3 py-3 rounded-md hover:bg-mist flex items-center gap-3" href="./team.html">Our Team</a>
+      <a class="drawer-link px-3 py-3 rounded-md hover:bg-mist flex items-center gap-3" href="./projects.html">Projects</a>
+      <a class="drawer-link px-3 py-3 rounded-md hover:bg-mist flex items-center gap-3" href="./gallery.html">Gallery</a>
+      <div class="pt-3 mt-2 border-t border-neutral">
+        <a href="./contact.html" class="btn-primary w-full">Contact Us</a>
+      </div>
+    </nav>
+  </aside>
+
+  <main>
+    <!-- PAGE HEADER -->
+    <section class="hero-grid relative overflow-hidden">
+      <div class="mx-auto max-w-[1280px] px-6 lg:px-8 py-20 lg:py-28 text-center text-white">
+        <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-surface/15 border border-surface/30 text-surface text-xs font-mono tracking-widest uppercase mb-5">
+          Tentang ALGM
+        </div>
+        <h1 class="text-white fade-up">Menjembatani Ilmu, Teknologi, dan Aksi Nyata</h1>
+        <p class="mt-5 text-white/80 max-w-2xl mx-auto text-lg fade-up delay-1">
+          Profil lengkap ALGM Solutions: latar belakang pendirian, visi, misi, serta nilai-nilai utama yang menggerakkan setiap pekerjaan kami.
+        </p>
+      </div>
+      <svg viewBox="0 0 1440 48" preserveAspectRatio="none" class="block w-full h-10 lg:h-16 text-white fill-current -mb-1">
+        <path d="M0 48L120 42.7C240 37 480 27 720 24C960 21 1200 27 1320 29.3L1440 32V48H1320C1200 48 960 48 720 48C480 48 240 48 120 48H0Z"></path>
+      </svg>
+    </section>
+
+    <!-- HISTORY / BACKGROUND (zig-zag) -->
+    <section class="section-pad bg-white">
+      <div class="mx-auto max-w-[1280px] px-6 lg:px-8 grid lg:grid-cols-12 gap-12 items-center">
+        <div class="lg:col-span-6 stagger-item order-2 lg:order-1">
+          <div class="relative">
+            <div class="rounded-lg overflow-hidden shadow-md border border-neutral">
+              <img src="./assets/20230309_162627-1.jpg" alt="Kegiatan survei lapangan ALGM"
+                   class="w-full h-[420px] object-cover"
+                   onerror="this.classList.add('hidden');this.nextElementSibling.classList.remove('hidden')" />
+              <div class="img-placeholder hidden h-[420px] !rounded-none">
+                <span class="badge-meta">INST-2019-001</span>
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 3l-4 4-4-4"/></svg>
+              </div>
+            </div>
+            <div class="absolute -bottom-5 -left-5 hidden md:block bg-white rounded-lg shadow-lg p-4 border border-neutral w-56">
+              <div class="font-mono text-[10px] text-accent/60 uppercase tracking-wider">Sejak</div>
+              <div class="font-bold text-2xl text-primary">2016</div>
+              <div class="text-xs text-accent/80 mt-1">Berdiri di bawah naungan SUA FKL IPB</div>
+            </div>
+          </div>
+        </div>
+        <div class="lg:col-span-5 lg:col-start-8 stagger-item order-1 lg:order-2" data-delay="120">
+          <span class="eyebrow">Latar Belakang</span>
+          <h2 class="mb-5">Dari Laboratorium Menjadi Dampak Nyata di Masyarakat</h2>
+          <p class="text-accent/85 mb-4">
+            ALGM Solutions lahir dari sebuah observasi sederhana: banyak keputusan di sektor kehutanan, pertanian, dan lingkungan yang diambil tanpa didukung data spasial yang cukup akurat. Sementara itu, di sisi lain, para peneliti di universitas telah menghasilkan teknologi dan metodologi yang andal — namun jarang menyentuh pengguna langsung.
+          </p>
+          <p class="text-accent/85 mb-4">
+            Pada tahun 2016, di bawah Satuan Usaha Akademik Fakultas Kehutanan dan Lingkungan IPB (sebelumnya Fakultas Kehutanan), ALGM didirikan sebagai jembatan antara dunia akademik dan praktisi: BUMN, pemerintah daerah, hingga komunitas adat yang membutuhkan data spasial berkualitas.
+          </p>
+          <p class="text-accent/85 mb-4">
+            Nama "ALGM" sendiri diambil dari singkatan Laboratorium Analisis Lahan dan Geomatika — laboratorium riset yang telah ada sejak dekade 2000-an dan melahirkan lebih dari 120 tesis serta 300 publikasi ilmiah tentang analisis spasial.
+          </p>
+          <div class="grid grid-cols-3 gap-6 pt-3 border-t border-neutral mt-6">
+            <div><div class="font-mono text-3xl font-bold text-primary">40+</div><div class="text-xs text-accent/60 mt-1 uppercase">Mitra &amp; Klien</div></div>
+            <div><div class="font-mono text-3xl font-bold text-primary">15</div><div class="text-xs text-accent/60 mt-1 uppercase">SDM Inti</div></div>
+            <div><div class="font-mono text-3xl font-bold text-primary">300+</div><div class="text-xs text-accent/60 mt-1 uppercase">Survei Lapangan</div></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- VISION, MISSION, VALUES -->
+    <section class="section-pad bg-mist grid-bg">
+      <div class="mx-auto max-w-[1280px] px-6 lg:px-8">
+
+        <div class="max-w-2xl mb-14 stagger-item">
+          <span class="eyebrow">Arah Kami</span>
+          <h2 class="mb-4">Visi, Misi, dan Nilai Utama</h2>
+        </div>
+
+        <div class="grid lg:grid-cols-12 gap-6">
+
+          <!-- Vision -->
+          <div class="card stagger-item lg:col-span-12 bg-gradient-to-br from-primary to-primary-700 text-white border-primary/30" data-delay="0">
+            <div class="flex flex-col lg:flex-row gap-6 items-start lg:items-center">
+              <div class="w-16 h-16 shrink-0 rounded-xl bg-white/10 backdrop-blur border border-white/15 flex items-center justify-center">
+                <svg class="w-8 h-8 text-surface" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+              </div>
+              <div>
+                <div class="font-mono text-xs tracking-widest uppercase text-surface/90 mb-1">Visi</div>
+                <h3 class="!text-2xl text-white mb-2">Menjadi pusat unggulan geospasial dan lingkungan berbasis riset terpercaya di Asia Tenggara</h3>
+                <p class="text-white/75 text-sm max-w-3xl">Menjadi pusat rujukan yang mengintegrasikan riset akademis dengan praktik pengelolaan lahan berkelanjutan, guna mendukung kedaulatan pangan, perlindungan ekosistem, dan kesejahteraan masyarakat.</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Mission -->
+          <div class="card stagger-item lg:col-span-7" data-delay="80">
+            <span class="font-mono text-[11px] uppercase tracking-wider text-surface-600">Misi Kami</span>
+            <h3 class="mt-2 mb-5 text-primary">Mendorong Aksi Nyata dengan 4 Pilar Kerja</h3>
+            <ol class="space-y-4">
+              <li class="flex gap-3">
+                <span class="shrink-0 w-8 h-8 rounded-md bg-primary text-white font-bold flex items-center justify-center font-mono text-sm">01</span>
+                <div>
+                  <div class="font-semibold text-primary">Menghasilkan data dan analisis spasial berstandar ilmiah</div>
+                  <div class="text-sm text-accent/75 mt-0.5">Dengan metodologi yang dapat direplikasi, diverifikasi, dan dipertanggungjawabkan dalam forum akademis maupun regulasi.</div>
+                </div>
+              </li>
+              <li class="flex gap-3">
+                <span class="shrink-0 w-8 h-8 rounded-md bg-primary text-white font-bold flex items-center justify-center font-mono text-sm">02</span>
+                <div>
+                  <div class="font-semibold text-primary">Mengembangkan kapasitas SDM kebumian dan kehutanan</div>
+                  <div class="text-sm text-accent/75 mt-0.5">Melalui pelatihan, pendampingan, dan alih teknologi untuk pemerintah daerah, BUMN, dan generasi muda.</div>
+                </div>
+              </li>
+              <li class="flex gap-3">
+                <span class="shrink-0 w-8 h-8 rounded-md bg-primary text-white font-bold flex items-center justify-center font-mono text-sm">03</span>
+                <div>
+                  <div class="font-semibold text-primary">Membangun sistem informasi yang terbuka dan bermanfaat</div>
+                  <div class="text-sm text-accent/75 mt-0.5">Geoportal, aplikasi mobile, dan dashboard spasial yang dapat diakses dan dimanfaatkan oleh berbagai lapisan pengguna.</div>
+                </div>
+              </li>
+              <li class="flex gap-3">
+                <span class="shrink-0 w-8 h-8 rounded-md bg-primary text-white font-bold flex items-center justify-center font-mono text-sm">04</span>
+                <div>
+                  <div class="font-semibold text-primary">Mendukung kebijakan berbasis bukti (evidence-based policy)</div>
+                  <div class="text-sm text-accent/75 mt-0.5">Menjadi mitra pemerintah dalam menyusun regulasi yang tepat sasaran melalui kajian spasial dan pemodelan terintegrasi.</div>
+                </div>
+              </li>
+            </ol>
+          </div>
+
+          <!-- Values -->
+          <div class="card stagger-item lg:col-span-5" data-delay="160">
+            <span class="font-mono text-[11px] uppercase tracking-wider text-surface-600">Nilai Utama</span>
+            <h3 class="mt-2 mb-5 text-primary">Yang Menjadi Pegangan Kami Setiap Hari</h3>
+            <div class="space-y-4">
+              <div class="flex items-start gap-3 p-3 rounded-lg bg-mist">
+                <div class="w-10 h-10 shrink-0 rounded-md bg-primary/10 text-primary flex items-center justify-center">
+                  <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+                </div>
+                <div>
+                  <div class="font-semibold text-primary text-sm">Integritas Ilmiah</div>
+                  <div class="text-xs text-accent/70 mt-0.5">Data apa adanya, tanpa rekayasa. Metodologi terbuka dan dapat diuji oleh siapa pun.</div>
+                </div>
+              </div>
+              <div class="flex items-start gap-3 p-3 rounded-lg bg-mist">
+                <div class="w-10 h-10 shrink-0 rounded-md bg-surface/15 text-primary flex items-center justify-center">
+                  <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                </div>
+                <div>
+                  <div class="font-semibold text-primary text-sm">Ketepatan Waktu</div>
+                  <div class="text-xs text-accent/70 mt-0.5">Kami menghargai tenggat sebagai komitmen. Pengiriman laporan &amp; data selalu terjadwal.</div>
+                </div>
+              </div>
+              <div class="flex items-start gap-3 p-3 rounded-lg bg-mist">
+                <div class="w-10 h-10 shrink-0 rounded-md bg-warning/15 text-[#a05a00] flex items-center justify-center">
+                  <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/></svg>
+                </div>
+                <div>
+                  <div class="font-semibold text-primary text-sm">Kolaborasi Inklusif</div>
+                  <div class="text-xs text-accent/70 mt-0.5">Bersama pemangku kepentingan — mulai dari dosen, mahasiswa, hingga masyarakat adat.</div>
+                </div>
+              </div>
+              <div class="flex items-start gap-3 p-3 rounded-lg bg-mist">
+                <div class="w-10 h-10 shrink-0 rounded-md bg-success/15 text-success flex items-center justify-center">
+                  <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 22c1-10 5.5-14 9-14s8 4 9 14"/><path d="M12 8a4 4 0 1 0 0-8 4 4 0 0 0 0 8z"/></svg>
+                </div>
+                <div>
+                  <div class="font-semibold text-primary text-sm">Berkelanjutan</div>
+                  <div class="text-xs text-accent/70 mt-0.5">Setiap rekomendasi yang kami berikan mempertimbangkan daya dukung ekosistem.</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ORG STRUCTURE / LEGAL -->
+    <section class="section-pad bg-white">
+      <div class="mx-auto max-w-[1280px] px-6 lg:px-8 grid lg:grid-cols-12 gap-12 items-start">
+
+        <div class="lg:col-span-5 stagger-item">
+          <span class="eyebrow">Payung Hukum</span>
+          <h2 class="mb-5">Berada di bawah Satuan Usaha Akademik IPB University</h2>
+          <p class="text-accent/85 mb-5">
+            Sebagai unit yang berada di bawah naungan SUA Fakultas Kehutanan dan Lingkungan, seluruh aktivitas ALGM Solutions memiliki payung hukum yang jelas dan tunduk pada standar mutu serta tata kelola keuangan Perguruan Tinggi Negeri Badan Hukum (PTN BH).
+          </p>
+          <ul class="space-y-3">
+            <li class="flex items-start gap-3">
+              <svg class="w-5 h-5 text-primary mt-0.5 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
+              <span class="text-accent/85">SK Rektor IPB No. 112/IT3/KP/2021 tentang Organisasi dan Tata Kelola SUA</span>
+            </li>
+            <li class="flex items-start gap-3">
+              <svg class="w-5 h-5 text-primary mt-0.5 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
+              <span class="text-accent/85">NIB Terdaftar sebagai Entitas di OSS RBA Kemenkumham</span>
+            </li>
+            <li class="flex items-start gap-3">
+              <svg class="w-5 h-5 text-primary mt-0.5 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
+              <span class="text-accent/85">Terafiliasi dengan Himpunan Ahli Geomatika Indonesia (HAGI)</span>
+            </li>
+            <li class="flex items-start gap-3">
+              <svg class="w-5 h-5 text-primary mt-0.5 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
+              <span class="text-accent/85">Mitra KLHK dalam penyusunan dokumen Standar Nasional Indonesia (SNI) spasial</span>
+            </li>
+          </ul>
+          <a href="./contact.html" class="btn-primary mt-8 inline-flex">
+            Dapatkan Company Profile
+            <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+          </a>
+        </div>
+
+        <!-- Diagram: Structure -->
+        <div class="lg:col-span-7 stagger-item" data-delay="120">
+          <div class="card !p-8 !bg-mist border-neutral">
+            <h4 class="text-primary font-bold mb-6 flex items-center gap-2">
+              <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><rect x="7" y="7" width="10" height="10" rx="1"/></svg>
+              Struktur Organisasi
+            </h4>
+            <!-- Hierarchy boxes -->
+            <div class="space-y-4">
+              <!-- Level 1 -->
+              <div class="mx-auto w-full md:w-3/5 p-4 rounded-md bg-primary text-white text-center shadow-primary">
+                <div class="font-bold text-sm">Dekan FKL &mdash; IPB University</div>
+                <div class="font-mono text-[11px] text-surface/80 mt-1">Pimpinan Tertinggi SUA</div>
+              </div>
+              <!-- Arrow -->
+              <div class="flex justify-center"><svg class="w-6 h-6 text-primary/50" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg></div>
+              <!-- Level 2 -->
+              <div class="mx-auto w-full md:w-3/5 p-4 rounded-md bg-white shadow-md border border-neutral text-center">
+                <div class="font-bold text-primary text-sm">Kepala Satuan Usaha Akademik (SUA)</div>
+                <div class="font-mono text-[11px] text-accent/60 mt-1">Pembina &amp; Pengarah Strategis</div>
+              </div>
+              <div class="flex justify-center"><svg class="w-6 h-6 text-primary/50" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg></div>
+              <!-- Level 3 -->
+              <div class="mx-auto w-full md:w-4/5 p-4 rounded-md bg-gradient-to-r from-surface/20 to-white shadow-sm border border-surface/30 text-center">
+                <div class="font-bold text-primary text-sm">Direktur Eksekutif ALGM Solutions</div>
+                <div class="font-mono text-[11px] text-accent/60 mt-1">Operasional &amp; Pengembangan Bisnis</div>
+              </div>
+              <div class="flex justify-center"><svg class="w-6 h-6 text-primary/50" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg></div>
+              <!-- Level 4: 3 divisions (zig-zag in cards) -->
+              <div class="grid md:grid-cols-3 gap-3">
+                <div class="p-4 rounded-md bg-white border border-neutral text-center shadow-sm">
+                  <div class="text-primary font-bold text-sm">Divisi Riset &amp; Konsultansi</div>
+                  <div class="font-mono text-[10px] text-accent/60 mt-1">Penelitian, AMDAL, Modeling</div>
+                </div>
+                <div class="p-4 rounded-md bg-white border border-neutral text-center shadow-sm">
+                  <div class="text-primary font-bold text-sm">Divisi Teknologi &amp; Data</div>
+                  <div class="font-mono text-[10px] text-accent/60 mt-1">Geoportal, WebGIS, Drone</div>
+                </div>
+                <div class="p-4 rounded-md bg-white border border-neutral text-center shadow-sm">
+                  <div class="text-primary font-bold text-sm">Divisi Kapasitas &amp; Kemitraan</div>
+                  <div class="font-mono text-[10px] text-accent/60 mt-1">Training, Rental, Sekretariat</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="section-pad relative overflow-hidden">
+      <div class="absolute inset-0 grid-bg-fine opacity-70"></div>
+      <div class="relative mx-auto max-w-4xl px-6 lg:px-8 text-center stagger-item">
+        <span class="eyebrow">Tim Kami</span>
+        <h2 class="!text-3xl md:!text-4xl mb-5">Dikenal karena metodologi, dipercaya karena hasil.</h2>
+        <p class="text-accent/80 text-lg max-w-2xl mx-auto mb-9">
+          Di belakang setiap peta dan laporan, terdapat tim multidisiplin yang dididik di kampus terbaik IPB dan berpengalaman bekerja di ekosistem hutan Indonesia yang paling kompleks.
+        </p>
+        <a href="./team.html" class="btn-primary inline-flex">
+          Temui Tim Kami
+          <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+        </a>
+      </div>
+    </section>
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="bg-charcoal text-white/80">
+    <div class="mx-auto max-w-[1280px] px-6 lg:px-8 pt-16 pb-10">
+      <div class="grid lg:grid-cols-12 gap-10">
+        <div class="lg:col-span-5">
+          <div class="flex items-center gap-3 mb-5">
+            <img src="./assets/logo.png" alt="Logo" class="h-12 w-12 brightness-0 invert" />
+            <div>
+              <div class="font-bold text-white text-lg tracking-tight">ALGM Solutions</div>
+              <div class="font-mono text-[11px] text-white/55 uppercase">SUA FKL &middot; IPB University</div>
+            </div>
+          </div>
+          <p class="text-sm text-white/70 leading-relaxed mb-6 max-w-md">
+            Unit layanan analisis geospasial dan lingkungan di bawah naungan Satuan Usaha Akademik Fakultas Kehutanan dan Lingkungan, IPB University.
+          </p>
+          <div class="space-y-2 text-sm">
+            <div class="flex items-start gap-3">
+              <svg class="w-4 h-4 mt-0.5 shrink-0 text-surface" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+              <span>Kampus IPB Darmaga, Jl. Meranti Wing 20 Lt. 3, Bogor 16680, Jawa Barat, Indonesia</span>
+            </div>
+            <div class="flex items-center gap-3">
+              <svg class="w-4 h-4 shrink-0 text-surface" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+              <a href="mailto:algm.solutions@apps.ipb.ac.id" class="hover:text-surface">algm.solutions@apps.ipb.ac.id</a>
+            </div>
+          </div>
+        </div>
+        <div class="lg:col-span-2">
+          <h4 class="text-white font-semibold mb-4 text-sm uppercase tracking-wider">Navigasi</h4>
+          <ul class="space-y-2.5 text-sm">
+            <li><a href="./index.html" class="hover:text-surface">Home</a></li>
+            <li><a href="./about.html" class="hover:text-surface">About Us</a></li>
+            <li><a href="./services.html" class="hover:text-surface">Services</a></li>
+            <li><a href="./team.html" class="hover:text-surface">Our Team</a></li>
+            <li><a href="./projects.html" class="hover:text-surface">Projects</a></li>
+            <li><a href="./gallery.html" class="hover:text-surface">Gallery</a></li>
+            <li><a href="./contact.html" class="hover:text-surface">Contact</a></li>
+          </ul>
+        </div>
+        <div class="lg:col-span-3">
+          <h4 class="text-white font-semibold mb-4 text-sm uppercase tracking-wider">Layanan</h4>
+          <ul class="space-y-2.5 text-sm">
+            <li><a href="./services.html#research" class="hover:text-surface">Research &amp; Consultancy</a></li>
+            <li><a href="./services.html#survey" class="hover:text-surface">Survey &amp; Mapping</a></li>
+            <li><a href="./services.html#training" class="hover:text-surface">Geospatial Training</a></li>
+            <li><a href="./services.html#geoportal" class="hover:text-surface">Geoportal Development</a></li>
+            <li><a href="./services.html#rental" class="hover:text-surface">Instrument Rental</a></li>
+          </ul>
+        </div>
+        <div class="lg:col-span-2">
+          <h4 class="text-white font-semibold mb-4 text-sm uppercase tracking-wider">Koneksi</h4>
+          <div class="flex gap-2 flex-wrap">
+            <a href="#" class="w-10 h-10 rounded-md bg-white/8 hover:bg-surface/20 text-white hover:text-surface flex items-center justify-center">
+              <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+            </a>
+            <a href="#" class="w-10 h-10 rounded-md bg-white/8 hover:bg-surface/20 text-white hover:text-surface flex items-center justify-center">
+              <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-4 0v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+            </a>
+            <a href="#" class="w-10 h-10 rounded-md bg-white/8 hover:bg-surface/20 text-white hover:text-surface flex items-center justify-center">
+              <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22.54 6.42a2.78 2.78 0 0 0-1.94-2C18.88 4 12 4 12 4s-6.88 0-8.6.46a2.78 2.78 0 0 0-1.94 2A29 29 0 0 0 1 11.75a29 29 0 0 0 .46 5.33A2.78 2.78 0 0 0 3.4 19c1.72.46 8.6.46 8.6.46s6.88 0 8.6-.46a2.78 2.78 0 0 0 1.94-2 29 29 0 0 0 .46-5.25 29 29 0 0 0-.46-5.33z"/><polygon points="9.75 15.02 15.5 11.75 9.75 8.48 9.75 15.02"/></svg>
+            </a>
+          </div>
+        </div>
+      </div>
+      <div class="border-t border-white/10 mt-12 pt-6 flex flex-col md:flex-row md:items-center md:justify-between gap-3 text-xs text-white/50">
+        <div>&copy; <span id="current-year"></span> ALGM Solutions &mdash; Fakultas Kehutanan dan Lingkungan, IPB University.</div>
+        <div class="flex items-center gap-5">
+          <a href="#" class="hover:text-surface">Kebijakan Privasi</a>
+          <span class="font-mono">v1.0.0</span>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <button id="scroll-top" class="scroll-top" aria-label="Kembali ke atas">
+    <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><polyline points="18 15 12 9 6 15"/></svg>
+  </button>
+
+  <script src="./js/main.js"></script>
+  <script>document.addEventListener('DOMContentLoaded', () => { if (window.lucide) lucide.createIcons(); });</script>
+</body>
+</html>

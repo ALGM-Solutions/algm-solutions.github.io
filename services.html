@@ -1,0 +1,556 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Layanan ALGM Solutions: Research & Consultancy, Survey & Mapping, Geospatial Training, Geoportal Development, dan Instrument Rental." />
+  <title>Services &mdash; ALGM Solutions | IPB University</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            primary: '#003366', secondary:'#C0C0C0', neutral:'#E0E0E0', surface:'#00BFFF', accent:'#36454F',
+            charcoal:'#2d3748', mist:'#f5f7fa', success:'#008000', warning:'#FFA500',
+          },
+          fontFamily: {
+            sans: ['Roboto','system-ui','sans-serif'],
+            mono: ['"JetBrains Mono"','ui-monospace','monospace'],
+          }
+        }
+      }
+    }
+  </script>
+  <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+  <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
+  <link rel="stylesheet" href="./css/style.css" />
+  <link rel="icon" type="image/png" href="./assets/logo.png" />
+</head>
+<body class="font-sans text-accent bg-white antialiased">
+
+  <!-- HEADER -->
+  <header id="site-header" class="sticky top-0 z-[100] w-full transition-all duration-300 bg-white/95">
+    <div class="mx-auto max-w-[1280px] px-6 lg:px-8 flex items-center justify-between h-20">
+      <a href="./index.html" class="flex items-center gap-3 group">
+        <img src="./assets/logo.png" alt="Logo" class="h-12 w-12 object-contain" />
+        <div class="leading-tight">
+          <div class="font-bold text-primary text-lg">ALGM Solutions</div>
+          <div class="font-mono text-[11px] text-accent/70 tracking-wide uppercase">IPB University</div>
+        </div>
+      </a>
+      <nav class="hidden lg:flex items-center gap-7 text-sm">
+        <a class="nav-link" href="./index.html">Home</a>
+        <a class="nav-link" href="./about.html">About Us</a>
+        <a class="nav-link" href="./services.html">Services</a>
+        <a class="nav-link" href="./team.html">Our Team</a>
+        <a class="nav-link" href="./projects.html">Projects</a>
+        <a class="nav-link" href="./gallery.html">Gallery</a>
+        <a href="./contact.html" class="btn-primary !py-2.5 !px-5 ml-2">Contact Us</a>
+      </nav>
+      <button id="nav-open" aria-label="Buka menu" class="lg:hidden p-2 rounded-md hover:bg-mist text-primary">
+        <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+      </button>
+    </div>
+  </header>
+  <div id="drawer-backdrop" class="drawer-backdrop"></div>
+  <aside id="mobile-drawer" class="mobile-drawer">
+    <div class="flex items-center justify-between p-5 border-b border-neutral">
+      <div class="flex items-center gap-2">
+        <img src="./assets/logo.png" alt="Logo" class="h-10 w-10" />
+        <div>
+          <div class="font-bold text-primary">ALGM Solutions</div>
+          <div class="font-mono text-[10px] text-accent/60 uppercase">IPB University</div>
+        </div>
+      </div>
+      <button id="nav-close" class="p-2 rounded-md hover:bg-mist"><svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></button>
+    </div>
+    <nav class="flex flex-col p-4 gap-1 text-[15px]">
+      <a class="drawer-link px-3 py-3 rounded-md hover:bg-mist" href="./index.html">Home</a>
+      <a class="drawer-link px-3 py-3 rounded-md hover:bg-mist" href="./about.html">About Us</a>
+      <a class="drawer-link px-3 py-3 rounded-md hover:bg-mist" href="./services.html">Services</a>
+      <a class="drawer-link px-3 py-3 rounded-md hover:bg-mist" href="./team.html">Our Team</a>
+      <a class="drawer-link px-3 py-3 rounded-md hover:bg-mist" href="./projects.html">Projects</a>
+      <a class="drawer-link px-3 py-3 rounded-md hover:bg-mist" href="./gallery.html">Gallery</a>
+      <div class="pt-3 mt-2 border-t border-neutral"><a href="./contact.html" class="btn-primary w-full">Contact Us</a></div>
+    </nav>
+  </aside>
+
+  <main>
+    <!-- PAGE HEADER -->
+    <section class="hero-grid relative overflow-hidden">
+      <div class="mx-auto max-w-[1280px] px-6 lg:px-8 py-20 lg:py-28 text-center text-white">
+        <span class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-surface/15 border border-surface/30 text-surface text-xs font-mono tracking-widest uppercase mb-5">
+          Lima Pilar Layanan
+        </span>
+        <h1 class="text-white fade-up">Solusi Geospasial End-to-End</h1>
+        <p class="mt-5 text-white/80 max-w-2xl mx-auto text-lg fade-up delay-1">
+          Dari ruang kuliah, ke laboratorium, ke lapangan, hingga ke dashboard pengambil keputusan. Kami menangani seluruh siklus data spasial.
+        </p>
+      </div>
+      <svg viewBox="0 0 1440 48" preserveAspectRatio="none" class="block w-full h-10 lg:h-16 text-white fill-current -mb-1">
+        <path d="M0 48L120 42.7C240 37 480 27 720 24C960 21 1200 27 1320 29.3L1440 32V48H1320C1200 48 960 48 720 48C480 48 240 48 120 48H0Z"></path>
+      </svg>
+    </section>
+
+    <!-- SERVICE CARDS -->
+    <section class="section-pad bg-white">
+      <div class="mx-auto max-w-[1280px] px-6 lg:px-8 space-y-24">
+
+        <!-- 1. Research & Consultancy -->
+        <div id="research" class="grid lg:grid-cols-12 gap-10 items-center scroll-mt-28">
+          <div class="lg:col-span-6 stagger-item">
+            <div class="rounded-lg overflow-hidden shadow-md border border-neutral">
+              <img src="./assets/20230309_162627-1.jpg" alt="Research and Consultancy - Kajian lingkungan"
+                   class="w-full h-[360px] object-cover"
+                   onerror="this.classList.add('hidden');this.nextElementSibling.classList.remove('hidden')" />
+              <div class="img-placeholder hidden h-[360px] !rounded-none">
+                <span class="badge-meta">RCH-2024</span>
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/></svg>
+              </div>
+            </div>
+          </div>
+          <div class="lg:col-span-5 lg:col-start-8 stagger-item" data-delay="120">
+            <div class="flex items-center gap-3 mb-3">
+              <div class="w-12 h-12 rounded-lg bg-primary text-white flex items-center justify-center shadow-primary">
+                <svg class="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
+              </div>
+              <div>
+                <span class="font-mono text-[11px] uppercase tracking-wider text-surface-600">01 / Layanan</span>
+                <h2 class="!text-2xl">Research &amp; Consultancy</h2>
+              </div>
+            </div>
+            <p class="text-accent/85 mb-5">
+              Layanan kajian ilmiah dan konsultansi teknis untuk menjawab pertanyaan strategis: berapa luas deforestasi? Di mana zona rawan longsor? Bagaimana skenario perubahan iklim terhadap daerah aliran sungai? Kami tidak hanya memberikan jawaban, namun juga menyertakan bukti dan dokumentasi yang dapat dipertanggungjawabkan.
+            </p>
+            <h4 class="text-primary font-semibold mb-2 text-sm uppercase tracking-wide">Ruang Lingkup</h4>
+            <ul class="grid sm:grid-cols-2 gap-2.5 mb-7 text-sm">
+              <li class="flex items-start gap-2"><svg class="w-4 h-4 text-success mt-0.5 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><polyline points="20 6 9 17 4 12"/></svg>Penyusunan AMDAL &amp; RKL-RPL</li>
+              <li class="flex items-start gap-2"><svg class="w-4 h-4 text-success mt-0.5 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><polyline points="20 6 9 17 4 12"/></svg>Pemodelan Tutupan &amp; Alih Fungsi Lahan</li>
+              <li class="flex items-start gap-2"><svg class="w-4 h-4 text-success mt-0.5 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><polyline points="20 6 9 17 4 12"/></svg>Studi Kelayakan Kawasan Hutan</li>
+              <li class="flex items-start gap-2"><svg class="w-4 h-4 text-success mt-0.5 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><polyline points="20 6 9 17 4 12"/></svg>Analisis Daya Dukung &amp; Beban Lingkungan</li>
+              <li class="flex items-start gap-2"><svg class="w-4 h-4 text-success mt-0.5 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><polyline points="20 6 9 17 4 12"/></svg>Perencanaan Wilayah &amp; RTRW Detail</li>
+              <li class="flex items-start gap-2"><svg class="w-4 h-4 text-success mt-0.5 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><polyline points="20 6 9 17 4 12"/></svg>Evaluasi Penataan Ruang Kawasan</li>
+            </ul>
+            <div class="flex flex-wrap items-center gap-5 pt-5 border-t border-neutral">
+              <div>
+                <div class="font-mono text-2xl font-bold text-primary">35+</div>
+                <div class="text-xs text-accent/60 uppercase tracking-wide">Kajian &amp; laporan</div>
+              </div>
+              <a href="./projects.html" class="btn-secondary ml-auto">Lihat Proyek Riset</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- 2. Survey & Mapping (reverse) -->
+        <div id="survey" class="grid lg:grid-cols-12 gap-10 items-center scroll-mt-28">
+          <div class="lg:col-span-5 stagger-item" data-delay="80">
+            <div class="flex items-center gap-3 mb-3">
+              <div class="w-12 h-12 rounded-lg bg-surface/15 text-primary flex items-center justify-center">
+                <svg class="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+              </div>
+              <div>
+                <span class="font-mono text-[11px] uppercase tracking-wider text-surface-600">02 / Layanan</span>
+                <h2 class="!text-2xl">Survey &amp; Mapping</h2>
+              </div>
+            </div>
+            <p class="text-accent/85 mb-5">
+              Data spasial yang baik berawal dari survei lapangan yang teliti. Tim survei kami telah bertugas mulai dari hutan Kalimantan, perkebunan di Sumatera, hingga pesisir Papua — membawa total station, GNSS geodetik, dan drone fotogrametri untuk menghasilkan peta dengan tingkat akurasi sentimeter.
+            </p>
+            <h4 class="text-primary font-semibold mb-2 text-sm uppercase tracking-wide">Ruang Lingkup</h4>
+            <ul class="grid sm:grid-cols-2 gap-2.5 mb-7 text-sm">
+              <li class="flex items-start gap-2"><svg class="w-4 h-4 text-success mt-0.5 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><polyline points="20 6 9 17 4 12"/></svg>Survei GNSS RTK &amp; Static</li>
+              <li class="flex items-start gap-2"><svg class="w-4 h-4 text-success mt-0.5 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><polyline points="20 6 9 17 4 12"/></svg>Total Station &amp; Topografi</li>
+              <li class="flex items-start gap-2"><svg class="w-4 h-4 text-success mt-0.5 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><polyline points="20 6 9 17 4 12"/></svg>Drone Orthomosaic &amp; DEM</li>
+              <li class="flex items-start gap-2"><svg class="w-4 h-4 text-success mt-0.5 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><polyline points="20 6 9 17 4 12"/></svg>Survei Inventarisasi Tegakan Hutan</li>
+              <li class="flex items-start gap-2"><svg class="w-4 h-4 text-success mt-0.5 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><polyline points="20 6 9 17 4 12"/></svg>Ukur Kavling &amp; Batas Wilayah</li>
+              <li class="flex items-start gap-2"><svg class="w-4 h-4 text-success mt-0.5 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><polyline points="20 6 9 17 4 12"/></svg>Bathimetri &amp; Survei Perairan</li>
+            </ul>
+            <div class="flex flex-wrap items-center gap-5 pt-5 border-t border-neutral">
+              <div>
+                <div class="font-mono text-2xl font-bold text-primary">300k+ Ha</div>
+                <div class="text-xs text-accent/60 uppercase tracking-wide">Wilayah dipetakan</div>
+              </div>
+              <a href="./gallery.html" class="btn-secondary ml-auto">Dokumentasi Survei</a>
+            </div>
+          </div>
+          <div class="lg:col-span-6 lg:col-start-7 stagger-item">
+            <div class="rounded-lg overflow-hidden shadow-md border border-neutral">
+              <img src="./assets/survey-karet-sembawa-2.jpeg" alt="Survey lapangan oleh tim ALGM"
+                   class="w-full h-[360px] object-cover"
+                   onerror="this.classList.add('hidden');this.nextElementSibling.classList.remove('hidden')" />
+              <div class="img-placeholder hidden h-[360px] !rounded-none">
+                <span class="badge-meta">SUR-2023-112</span>
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 3. Training -->
+        <div id="training" class="grid lg:grid-cols-12 gap-10 items-center scroll-mt-28">
+          <div class="lg:col-span-6 stagger-item">
+            <div class="rounded-lg overflow-hidden shadow-md border border-neutral">
+              <img src="./assets/IMG_5600-1.jpg" alt="Pelatihan QGIS"
+                   class="w-full h-[360px] object-cover"
+                   onerror="this.classList.add('hidden');this.nextElementSibling.classList.remove('hidden')" />
+              <div class="img-placeholder hidden h-[360px] !rounded-none">
+                <span class="badge-meta">TRN-2024-008</span>
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>
+              </div>
+            </div>
+          </div>
+          <div class="lg:col-span-5 lg:col-start-8 stagger-item" data-delay="120">
+            <div class="flex items-center gap-3 mb-3">
+              <div class="w-12 h-12 rounded-lg bg-warning/15 text-[#a05a00] flex items-center justify-center">
+                <svg class="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>
+              </div>
+              <div>
+                <span class="font-mono text-[11px] uppercase tracking-wider text-surface-600">03 / Layanan</span>
+                <h2 class="!text-2xl">Geospatial Training</h2>
+              </div>
+            </div>
+            <p class="text-accent/85 mb-5">
+              Kami percaya bahwa data hanya berarti apabila dikelola oleh SDM yang mumpuni. Setiap tahun, ALGM Solutions menyelenggarakan pelatihan untuk lebih dari 250 peserta — mulai dari staf pemerintah daerah, anggota BUMN, hingga mahasiswa yang akan terjun ke dunia kerja.
+            </p>
+            <h4 class="text-primary font-semibold mb-2 text-sm uppercase tracking-wide">Modul Pelatihan Unggulan</h4>
+            <ul class="grid sm:grid-cols-1 gap-2.5 mb-7 text-sm">
+              <li class="flex items-start gap-2 p-3 bg-mist rounded-md">
+                <span class="font-mono font-bold text-primary shrink-0 w-8">GIS-1</span>
+                <div><div class="font-semibold text-primary">GIS Fundamental &amp; QGIS Mastery (3 hari)</div><div class="text-xs text-accent/70">Proyeksi, editing, analisis overlay, atlas, hingga pembuatan layout cetak.</div></div>
+              </li>
+              <li class="flex items-start gap-2 p-3 bg-mist rounded-md">
+                <span class="font-mono font-bold text-primary shrink-0 w-8">RS-2</span>
+                <div><div class="font-semibold text-primary">Remote Sensing Lanjutan (4 hari)</div><div class="text-xs text-accent/70">Pengolahan Sentinel-1/2, Landsat, Supervised Classification, NDVI &amp; indeks spektral.</div></div>
+              </li>
+              <li class="flex items-start gap-2 p-3 bg-mist rounded-md">
+                <span class="font-mono font-bold text-primary shrink-0 w-8">AI-3</span>
+                <div><div class="font-semibold text-primary">Machine Learning untuk Spasial (5 hari)</div><div class="text-xs text-accent/70">Google Earth Engine, Random Forest, CNN untuk segmentasi citra.</div></div>
+              </li>
+            </ul>
+            <div class="flex flex-wrap items-center gap-5 pt-5 border-t border-neutral">
+              <div>
+                <div class="font-mono text-2xl font-bold text-primary">250+</div>
+                <div class="text-xs text-accent/60 uppercase tracking-wide">Alumni pelatihan</div>
+              </div>
+              <a href="./contact.html" class="btn-primary ml-auto">Minta Silabus</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- 4. Geoportal (reverse) -->
+        <div id="geoportal" class="grid lg:grid-cols-12 gap-10 items-center scroll-mt-28">
+          <div class="lg:col-span-5 stagger-item" data-delay="80">
+            <div class="flex items-center gap-3 mb-3">
+              <div class="w-12 h-12 rounded-lg bg-gradient-to-br from-charcoal to-accent text-surface flex items-center justify-center shadow-md">
+                <svg class="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+              </div>
+              <div>
+                <span class="font-mono text-[11px] uppercase tracking-wider text-surface-600">04 / Layanan</span>
+                <h2 class="!text-2xl">Geoportal Development</h2>
+              </div>
+            </div>
+            <p class="text-accent/85 mb-5">
+              Ubah ratusan shapefile dan ribuan baris tabel menjadi sistem informasi yang dapat diakses seluruh pemangku kepentingan. Kami membangun geoportal enterprise mulai dari tata kelola data, pilihan arsitektur server, hingga desain antarmuka yang intuitif untuk pengguna awam.
+            </p>
+            <h4 class="text-primary font-semibold mb-2 text-sm uppercase tracking-wide">Stack Teknologi Kami</h4>
+            <ul class="grid sm:grid-cols-2 gap-2.5 mb-7 text-sm">
+              <li class="flex items-center gap-2 p-3 bg-mist rounded-md"><span class="font-mono text-xs px-2 py-0.5 rounded bg-primary text-white">PostGIS</span><span class="text-accent/70">Spatial Database</span></li>
+              <li class="flex items-center gap-2 p-3 bg-mist rounded-md"><span class="font-mono text-xs px-2 py-0.5 rounded bg-primary text-white">GeoServer</span><span class="text-accent/70">OGC Server</span></li>
+              <li class="flex items-center gap-2 p-3 bg-mist rounded-md"><span class="font-mono text-xs px-2 py-0.5 rounded bg-surface text-primary-700 font-semibold">Leaflet</span><span class="text-accent/70">Web Client</span></li>
+              <li class="flex items-center gap-2 p-3 bg-mist rounded-md"><span class="font-mono text-xs px-2 py-0.5 rounded bg-success text-white">Django</span><span class="text-accent/70">CMS / Backend</span></li>
+            </ul>
+            <div class="flex flex-wrap items-center gap-5 pt-5 border-t border-neutral">
+              <div>
+                <div class="font-mono text-2xl font-bold text-primary">12</div>
+                <div class="text-xs text-accent/60 uppercase tracking-wide">Portal terbangun</div>
+              </div>
+              <a href="./projects.html#geoportal" class="btn-secondary ml-auto">Case Study Geoportal</a>
+            </div>
+          </div>
+          <div class="lg:col-span-6 lg:col-start-7 stagger-item">
+            <div class="card !p-0 overflow-hidden">
+              <div class="bg-primary text-white flex items-center justify-between px-4 py-2.5 text-xs font-mono">
+                <span>geoportal-dlh.riau.go.id &mdash; Dashboard Monitoring</span>
+                <span class="flex items-center gap-1.5">
+                  <span class="w-2 h-2 rounded-full bg-success"></span> LIVE
+                </span>
+              </div>
+              <div class="p-6 grid-bg-fine min-h-[320px] flex items-center justify-center">
+                <svg viewBox="0 0 400 240" class="w-full max-w-md">
+                  <defs>
+                    <linearGradient id="mapg" x1="0" x2="1" y1="0" y2="1">
+                      <stop offset="0%" stop-color="#008000" stop-opacity="0.75"/>
+                      <stop offset="100%" stop-color="#00BFFF" stop-opacity="0.55"/>
+                    </linearGradient>
+                  </defs>
+                  <rect x="0" y="0" width="400" height="240" fill="#eef4fa"/>
+                  <path d="M20,180 Q60,140 90,160 T160,120 Q200,140 230,100 Q270,120 310,90 L370,120 L380,220 L20,220 Z" fill="url(#mapg)" stroke="#003366" stroke-width="0.8"/>
+                  <path d="M50 200 L150 160 L220 180 L330 150" stroke="#FFA500" stroke-width="1.4" stroke-dasharray="4 3" fill="none"/>
+                  <circle cx="90" cy="160" r="4" fill="#003366"/>
+                  <circle cx="160" cy="120" r="4" fill="#FFA500"/>
+                  <circle cx="270" cy="110" r="4" fill="#00BFFF"/>
+                  <circle cx="330" cy="150" r="4" fill="#008000"/>
+                </svg>
+              </div>
+              <div class="grid grid-cols-3 border-t border-neutral">
+                <div class="p-3 text-center border-r border-neutral"><div class="font-mono text-xl font-bold text-primary">1,824</div><div class="text-[10px] uppercase tracking-wider text-accent/60">Feature Layer</div></div>
+                <div class="p-3 text-center border-r border-neutral"><div class="font-mono text-xl font-bold text-primary">98.7%</div><div class="text-[10px] uppercase tracking-wider text-accent/60">API Uptime</div></div>
+                <div class="p-3 text-center"><div class="font-mono text-xl font-bold text-primary">2.4k</div><div class="text-[10px] uppercase tracking-wider text-accent/60">User / Bulan</div></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 5. Instrument Rental (full width accent) -->
+        <div id="rental" class="scroll-mt-28">
+          <div class="relative rounded-xl overflow-hidden shadow-xl border border-primary/20">
+            <div class="absolute inset-0 hero-grid opacity-95"></div>
+            <div class="relative grid lg:grid-cols-12 gap-8 p-8 lg:p-12 items-center">
+              <div class="lg:col-span-7 text-white stagger-item">
+                <div class="flex items-center gap-3 mb-3">
+                  <div class="w-14 h-14 rounded-xl bg-white/10 backdrop-blur border border-white/15 flex items-center justify-center">
+                    <svg class="w-7 h-7 text-surface" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M2 20h.01"/><path d="M7 20V10"/><path d="M12 20V4"/><path d="M17 20v-6"/><path d="M22 20h.01"/></svg>
+                  </div>
+                  <div>
+                    <span class="font-mono text-[11px] uppercase tracking-widest text-surface">05 / Layanan</span>
+                    <h2 class="!text-3xl text-white mt-1">Instrument Rental</h2>
+                  </div>
+                </div>
+                <p class="text-white/85 mb-6 max-w-2xl">
+                  Tidak perlu membeli alat mahal untuk proyek Anda. Sewa peralatan survei dan laboratorium geospasial berkualitas kami, lengkap dengan pendamping teknisi bersertifikat apabila diperlukan. Tersedia untuk sewa harian, mingguan, dan bulanan.
+                </p>
+                <div class="grid sm:grid-cols-2 md:grid-cols-3 gap-3 max-w-3xl">
+                  <div class="p-3 rounded-lg bg-white/8 backdrop-blur border border-white/15">
+                    <div class="font-mono text-[10px] uppercase tracking-wider text-surface mb-1">GNSS</div>
+                    <div class="font-semibold text-white text-sm">Receiver RTK (Hi-Target, CHC)</div>
+                  </div>
+                  <div class="p-3 rounded-lg bg-white/8 backdrop-blur border border-white/15">
+                    <div class="font-mono text-[10px] uppercase tracking-wider text-surface mb-1">Drone</div>
+                    <div class="font-semibold text-white text-sm">DJI Phantom 4 RTK &amp; M300</div>
+                  </div>
+                  <div class="p-3 rounded-lg bg-white/8 backdrop-blur border border-white/15">
+                    <div class="font-mono text-[10px] uppercase tracking-wider text-surface mb-1">Total Station</div>
+                    <div class="font-semibold text-white text-sm">Topcon GM-100 Series</div>
+                  </div>
+                  <div class="p-3 rounded-lg bg-white/8 backdrop-blur border border-white/15">
+                    <div class="font-mono text-[10px] uppercase tracking-wider text-surface mb-1">Sensor Cuaca</div>
+                    <div class="font-semibold text-white text-sm">AWS + Soil Moisture</div>
+                  </div>
+                  <div class="p-3 rounded-lg bg-white/8 backdrop-blur border border-white/15">
+                    <div class="font-mono text-[10px] uppercase tracking-wider text-surface mb-1">LiDAR</div>
+                    <div class="font-semibold text-white text-sm">Velodyne Puck (by request)</div>
+                  </div>
+                  <div class="p-3 rounded-lg bg-white/8 backdrop-blur border border-white/15">
+                    <div class="font-mono text-[10px] uppercase tracking-wider text-surface mb-1">Field Kit</div>
+                    <div class="font-semibold text-white text-sm">Clinometer, Calliper, GPS Map</div>
+                  </div>
+                </div>
+              </div>
+              <div class="lg:col-span-5 stagger-item" data-delay="120">
+                <div class="bg-white rounded-xl p-6 shadow-2xl">
+                  <h4 class="text-primary font-bold mb-4 flex items-center gap-2">
+                    <svg class="w-5 h-5 text-surface" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+                    Cek Ketersediaan Alat
+                  </h4>
+                  <div class="space-y-3 text-sm">
+                    <div>
+                      <label class="form-label">Pilih Kategori</label>
+                      <select class="form-select">
+                        <option>Drone Mapping</option>
+                        <option>GNSS RTK</option>
+                        <option>Total Station</option>
+                        <option>Sensor &amp; Alat Lapangan</option>
+                      </select>
+                    </div>
+                    <div class="grid grid-cols-2 gap-3">
+                      <div>
+                        <label class="form-label">Mulai Sewa</label>
+                        <input type="date" class="form-input" />
+                      </div>
+                      <div>
+                        <label class="form-label">Selesai</label>
+                        <input type="date" class="form-input" />
+                      </div>
+                    </div>
+                    <div>
+                      <label class="form-label">Lokasi Penggunaan</label>
+                      <input type="text" class="form-input" placeholder="Kabupaten/Kota, Provinsi" />
+                    </div>
+                    <a href="./contact.html" class="btn-accent w-full mt-2">Kirim Permintaan Sewa</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- Service Process / Workflow -->
+    <section class="section-pad bg-mist grid-bg">
+      <div class="mx-auto max-w-[1280px] px-6 lg:px-8">
+        <div class="max-w-2xl mb-12 stagger-item">
+          <span class="eyebrow">Bagaimana Kami Bekerja</span>
+          <h2 class="mb-4">Projek dimulai dengan satu percakapan singkat.</h2>
+        </div>
+        <div class="grid lg:grid-cols-4 gap-6">
+          <div class="card stagger-item relative" data-delay="0">
+            <div class="absolute -top-4 left-6 w-10 h-10 rounded-lg bg-primary text-white font-bold flex items-center justify-center font-mono shadow-primary">01</div>
+            <div class="pt-3">
+              <h4 class="text-primary font-semibold mb-2">Discovery &amp; Scope</h4>
+              <p class="text-sm text-accent/75">Konsultasi awal untuk memahami kebutuhan, tujuan, dan lingkup kerja. Kami kirimkan proposal teknis &amp; penawaran dalam 5 hari kerja.</p>
+            </div>
+          </div>
+          <div class="card stagger-item relative" data-delay="80">
+            <div class="absolute -top-4 left-6 w-10 h-10 rounded-lg bg-primary text-white font-bold flex items-center justify-center font-mono shadow-primary">02</div>
+            <div class="pt-3">
+              <h4 class="text-primary font-semibold mb-2">Perencanaan &amp; Metodologi</h4>
+              <p class="text-sm text-accent/75">Riset pustaka, pemilihan data dasar, penentuan metode (misal: klasifikasi RF vs rule-based), dan penurunan tim survei.</p>
+            </div>
+          </div>
+          <div class="card stagger-item relative" data-delay="160">
+            <div class="absolute -top-4 left-6 w-10 h-10 rounded-lg bg-primary text-white font-bold flex items-center justify-center font-mono shadow-primary">03</div>
+            <div class="pt-3">
+              <h4 class="text-primary font-semibold mb-2">Eksekusi &amp; Quality Control</h4>
+              <p class="text-sm text-accent/75">Pekerjaan lapangan &amp; olah data. Setiap tahap lolos 2 lapis QC internal sebelum sampai ke klien.</p>
+            </div>
+          </div>
+          <div class="card stagger-item relative" data-delay="240">
+            <div class="absolute -top-4 left-6 w-10 h-10 rounded-lg bg-primary text-white font-bold flex items-center justify-center font-mono shadow-primary">04</div>
+            <div class="pt-3">
+              <h4 class="text-primary font-semibold mb-2">Delivery &amp; Support</h4>
+              <p class="text-sm text-accent/75">Penyerahan peta, laporan, dan/atau aplikasi. 30 hari garansi koreksi + opsional pendampingan 6 bulan.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FAQ -->
+    <section class="section-pad bg-white" x-data="{ open: 0 }">
+      <div class="mx-auto max-w-4xl px-6 lg:px-8">
+        <div class="text-center max-w-2xl mx-auto mb-12 stagger-item">
+          <span class="eyebrow">Pertanyaan Umum</span>
+          <h2 class="mb-3">FAQ tentang Layanan Kami</h2>
+        </div>
+        <div class="space-y-3">
+          <div class="card !p-0 stagger-item overflow-hidden">
+            <button @click="open === 1 ? open = 0 : open = 1" class="w-full flex items-center justify-between px-5 py-4 text-left">
+              <span class="font-semibold text-primary">Berapa lama waktu pengerjaan proyek tipikal?</span>
+              <svg class="w-5 h-5 text-accent/60 transition-transform" :class="open===1 && 'rotate-45'" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+            </button>
+            <div x-show="open === 1" x-cloak class="px-5 pb-5 text-sm text-accent/80 border-t border-neutral/80 pt-3" x-transition>
+              Survey 500 ha + drone orthomosaic rata-rata 7 &mdash; 10 hari kerja. Kajian AMDAL lengkap 2 &mdash; 3 bulan. Geoportal standar 2 &mdash; 4 bulan tergantung jumlah layer &amp; modul.
+            </div>
+          </div>
+          <div class="card !p-0 stagger-item overflow-hidden">
+            <button @click="open === 2 ? open = 0 : open = 2" class="w-full flex items-center justify-between px-5 py-4 text-left">
+              <span class="font-semibold text-primary">Apakah ALGM bisa bekerjasama dengan vendor lain?</span>
+              <svg class="w-5 h-5 text-accent/60 transition-transform" :class="open===2 && 'rotate-45'" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+            </button>
+            <div x-show="open === 2" x-cloak class="px-5 pb-5 text-sm text-accent/80 border-t border-neutral/80 pt-3" x-transition>
+              Tentu. Kami terbiasa bekerja sebagai sub-kontraktor teknis atau bagian dari konsorsium. Kami juga memahami alur administrasi LPSE, e-catalog, dan mekanisme pembayaran PTN BH.
+            </div>
+          </div>
+          <div class="card !p-0 stagger-item overflow-hidden">
+            <button @click="open === 3 ? open = 0 : open = 3" class="w-full flex items-center justify-between px-5 py-4 text-left">
+              <span class="font-semibold text-primary">Apakah pelatihan bisa diadakan secara daring/hybrid?</span>
+              <svg class="w-5 h-5 text-accent/60 transition-transform" :class="open===3 && 'rotate-45'" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+            </button>
+            <div x-show="open === 3" x-cloak class="px-5 pb-5 text-sm text-accent/80 border-t border-neutral/80 pt-3" x-transition>
+              Ya. Pelatihan GIS dasar &amp; menengah dapat diselenggarakan 100% daring menggunakan Zoom + lab virtual berbasis cloud. Modul drone &amp; survei memerlukan sesi tatap muka untuk praktik.
+            </div>
+          </div>
+          <div class="card !p-0 stagger-item overflow-hidden">
+            <button @click="open === 4 ? open = 0 : open = 4" class="w-full flex items-center justify-between px-5 py-4 text-left">
+              <span class="font-semibold text-primary">Apakah ada bukti sertifikasi &amp; portofolio?</span>
+              <svg class="w-5 h-5 text-accent/60 transition-transform" :class="open===4 && 'rotate-45'" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+            </button>
+            <div x-show="open === 4" x-cloak class="px-5 pb-5 text-sm text-accent/80 border-t border-neutral/80 pt-3" x-transition>
+              Dokumen portofolio (termasuk daftar klien, contoh laporan, sertifikat BNSP tenaga teknis, dan SK pengangkatan SUA) dapat dibagikan setelah tanda tangan NDA. <a href="./contact.html" class="text-primary font-semibold underline">Hubungi kami</a> untuk meminta.
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="section-pad relative overflow-hidden">
+      <div class="absolute inset-0 grid-bg-fine opacity-70"></div>
+      <div class="relative mx-auto max-w-4xl px-6 lg:px-8 text-center stagger-item">
+        <span class="eyebrow">Diskusikan Kebutuhan Anda</span>
+        <h2 class="!text-3xl md:!text-4xl mb-5">Siap memulai proyek Anda?</h2>
+        <p class="text-accent/80 text-lg max-w-2xl mx-auto mb-9">
+          Konsultasi awal gratis 30 menit. Sampaikan tujuan proyek Anda &mdash; kami akan merekomendasikan kombinasi layanan yang paling efisien.
+        </p>
+        <a href="./contact.html" class="btn-primary inline-flex">Konsultasi Sekarang</a>
+      </div>
+    </section>
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="bg-charcoal text-white/80">
+    <div class="mx-auto max-w-[1280px] px-6 lg:px-8 pt-16 pb-10">
+      <div class="grid lg:grid-cols-12 gap-10">
+        <div class="lg:col-span-5">
+          <div class="flex items-center gap-3 mb-5">
+            <img src="./assets/logo.png" alt="Logo" class="h-12 w-12 brightness-0 invert" />
+            <div>
+              <div class="font-bold text-white text-lg">ALGM Solutions</div>
+              <div class="font-mono text-[11px] text-white/55 uppercase">SUA FKL &middot; IPB University</div>
+            </div>
+          </div>
+          <p class="text-sm text-white/70 leading-relaxed mb-6 max-w-md">Unit layanan analisis geospasial dan lingkungan Fakultas Kehutanan dan Lingkungan IPB University.</p>
+          <div class="space-y-2 text-sm">
+            <div class="flex items-start gap-3"><svg class="w-4 h-4 mt-0.5 shrink-0 text-surface" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg><span>Kampus IPB Darmaga, Jl. Meranti Wing 20 Lt. 3, Bogor 16680</span></div>
+            <div class="flex items-center gap-3"><svg class="w-4 h-4 shrink-0 text-surface" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg><a href="mailto:algm.solutions@apps.ipb.ac.id" class="hover:text-surface">algm.solutions@apps.ipb.ac.id</a></div>
+          </div>
+        </div>
+        <div class="lg:col-span-2">
+          <h4 class="text-white font-semibold mb-4 text-sm uppercase tracking-wider">Navigasi</h4>
+          <ul class="space-y-2.5 text-sm">
+            <li><a href="./index.html" class="hover:text-surface">Home</a></li>
+            <li><a href="./about.html" class="hover:text-surface">About Us</a></li>
+            <li><a href="./services.html" class="hover:text-surface">Services</a></li>
+            <li><a href="./team.html" class="hover:text-surface">Our Team</a></li>
+            <li><a href="./projects.html" class="hover:text-surface">Projects</a></li>
+            <li><a href="./gallery.html" class="hover:text-surface">Gallery</a></li>
+            <li><a href="./contact.html" class="hover:text-surface">Contact</a></li>
+          </ul>
+        </div>
+        <div class="lg:col-span-3">
+          <h4 class="text-white font-semibold mb-4 text-sm uppercase tracking-wider">Layanan</h4>
+          <ul class="space-y-2.5 text-sm">
+            <li><a href="./services.html#research" class="hover:text-surface">Research &amp; Consultancy</a></li>
+            <li><a href="./services.html#survey" class="hover:text-surface">Survey &amp; Mapping</a></li>
+            <li><a href="./services.html#training" class="hover:text-surface">Geospatial Training</a></li>
+            <li><a href="./services.html#geoportal" class="hover:text-surface">Geoportal Development</a></li>
+            <li><a href="./services.html#rental" class="hover:text-surface">Instrument Rental</a></li>
+          </ul>
+        </div>
+        <div class="lg:col-span-2">
+          <h4 class="text-white font-semibold mb-4 text-sm uppercase tracking-wider">Koneksi</h4>
+          <div class="flex gap-2 flex-wrap">
+            <a href="#" class="w-10 h-10 rounded-md bg-white/8 hover:bg-surface/20 text-white hover:text-surface flex items-center justify-center"><svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg></a>
+            <a href="#" class="w-10 h-10 rounded-md bg-white/8 hover:bg-surface/20 text-white hover:text-surface flex items-center justify-center"><svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-4 0v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg></a>
+            <a href="#" class="w-10 h-10 rounded-md bg-white/8 hover:bg-surface/20 text-white hover:text-surface flex items-center justify-center"><svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22.54 6.42a2.78 2.78 0 0 0-1.94-2C18.88 4 12 4 12 4s-6.88 0-8.6.46a2.78 2.78 0 0 0-1.94 2A29 29 0 0 0 1 11.75a29 29 0 0 0 .46 5.33A2.78 2.78 0 0 0 3.4 19c1.72.46 8.6.46 8.6.46s6.88 0 8.6-.46a2.78 2.78 0 0 0 1.94-2 29 29 0 0 0 .46-5.25 29 29 0 0 0-.46-5.33z"/><polygon points="9.75 15.02 15.5 11.75 9.75 8.48 9.75 15.02"/></svg></a>
+          </div>
+        </div>
+      </div>
+      <div class="border-t border-white/10 mt-12 pt-6 flex flex-col md:flex-row md:items-center md:justify-between gap-3 text-xs text-white/50">
+        <div>&copy; <span id="current-year"></span> ALGM Solutions &mdash; IPB University.</div>
+        <span class="font-mono">v1.0.0</span>
+      </div>
+    </div>
+  </footer>
+
+  <button id="scroll-top" class="scroll-top" aria-label="Kembali ke atas">
+    <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><polyline points="18 15 12 9 6 15"/></svg>
+  </button>
+
+  <script src="./js/main.js"></script>
+  <script>document.addEventListener('DOMContentLoaded', () => { if (window.lucide) lucide.createIcons(); });</script>
+</body>
+</html>

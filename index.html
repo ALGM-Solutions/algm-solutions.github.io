@@ -1,0 +1,726 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="ALGM Solutions — Unit layanan analisis geospasial dan lingkungan di bawah SUA Fakultas Kehutanan dan Lingkungan IPB University. Solusi data geospasial, perencanaan lahan, dan pengelolaan SDA berkelanjutan." />
+  <title>ALGM Solutions — Analisis Geospasial &amp; Lingkungan | IPB University</title>
+
+  <!-- Tailwind CSS CDN (design.md: precise-industrial aesthetic) -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            primary:   '#003366',
+            secondary: '#C0C0C0',
+            neutral:   '#E0E0E0',
+            surface:   '#00BFFF',
+            accent:    '#36454F',
+            charcoal:  '#2d3748',
+            mist:      '#f5f7fa',
+            success:   '#008000',
+            warning:   '#FFA500',
+          },
+          fontFamily: {
+            sans: ['Roboto', 'system-ui', 'sans-serif'],
+            mono: ['"JetBrains Mono"', 'ui-monospace', 'monospace'],
+          },
+          boxShadow: {
+            primary: '0 4px 14px rgba(0,51,102,0.18)',
+          }
+        }
+      }
+    }
+  </script>
+
+  <!-- Alpine.js for lightweight reactivity -->
+  <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+
+  <!-- Lucide icons (design.md: icon system only, no emojis) -->
+  <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
+
+  <!-- Custom styles -->
+  <link rel="stylesheet" href="./css/style.css" />
+
+  <link rel="icon" type="image/png" href="./assets/logo.png" />
+</head>
+<body class="font-sans text-accent bg-white antialiased">
+
+  <!-- =========================================================
+       STICKY HEADER / NAV
+       z-index contract: sticky-nav = 100
+       ========================================================= -->
+  <header id="site-header" class="sticky top-0 z-[100] w-full transition-all duration-300 bg-white/95">
+    <div class="mx-auto max-w-[1280px] px-6 lg:px-8 flex items-center justify-between h-20">
+      <!-- Logo -->
+      <a href="./index.html" class="flex items-center gap-3 group">
+        <img src="./assets/logo.png" alt="ALGM Solutions Logo" class="h-12 w-12 object-contain" />
+        <div class="leading-tight">
+          <div class="font-bold text-primary tracking-tight text-lg group-hover:text-primary-600 transition-colors">ALGM Solutions</div>
+          <div class="font-mono text-[11px] text-accent/70 tracking-wide uppercase">IPB University</div>
+        </div>
+      </a>
+
+      <!-- Desktop Nav -->
+      <nav class="hidden lg:flex items-center gap-7 text-sm">
+        <a class="nav-link" href="./index.html">Home</a>
+        <a class="nav-link" href="./about.html">About Us</a>
+        <a class="nav-link" href="./services.html">Services</a>
+        <a class="nav-link" href="./team.html">Our Team</a>
+        <a class="nav-link" href="./projects.html">Projects</a>
+        <a class="nav-link" href="./gallery.html">Gallery</a>
+        <a href="./contact.html" class="btn-primary !py-2.5 !px-5 ml-2">Contact Us</a>
+      </nav>
+
+      <!-- Mobile Burger -->
+      <button id="nav-open" aria-label="Buka menu" class="lg:hidden p-2 rounded-md hover:bg-mist text-primary">
+        <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
+      </button>
+    </div>
+  </header>
+
+  <!-- Mobile Drawer Backdrop -->
+  <div id="drawer-backdrop" class="drawer-backdrop"></div>
+
+  <!-- Mobile Nav Drawer -->
+  <aside id="mobile-drawer" class="mobile-drawer">
+    <div class="flex items-center justify-between p-5 border-b border-neutral">
+      <div class="flex items-center gap-2">
+        <img src="./assets/logo.png" alt="Logo" class="h-10 w-10" />
+        <div>
+          <div class="font-bold text-primary">ALGM Solutions</div>
+          <div class="font-mono text-[10px] text-accent/60 uppercase">IPB University</div>
+        </div>
+      </div>
+      <button id="nav-close" aria-label="Tutup menu" class="p-2 rounded-md hover:bg-mist text-accent">
+        <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+      </button>
+    </div>
+    <nav class="flex flex-col p-4 gap-1 text-[15px]">
+      <a class="drawer-link px-3 py-3 rounded-md hover:bg-mist transition-colors flex items-center gap-3" href="./index.html">
+        <svg class="w-5 h-5 text-primary" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12l9-9 9 9"/><path d="M5 10v10h14V10"/></svg>
+        Home
+      </a>
+      <a class="drawer-link px-3 py-3 rounded-md hover:bg-mist transition-colors flex items-center gap-3" href="./about.html">
+        <svg class="w-5 h-5 text-primary" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>
+        About Us
+      </a>
+      <a class="drawer-link px-3 py-3 rounded-md hover:bg-mist transition-colors flex items-center gap-3" href="./services.html">
+        <svg class="w-5 h-5 text-primary" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg>
+        Services
+      </a>
+      <a class="drawer-link px-3 py-3 rounded-md hover:bg-mist transition-colors flex items-center gap-3" href="./team.html">
+        <svg class="w-5 h-5 text-primary" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+        Our Team
+      </a>
+      <a class="drawer-link px-3 py-3 rounded-md hover:bg-mist transition-colors flex items-center gap-3" href="./projects.html">
+        <svg class="w-5 h-5 text-primary" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"/></svg>
+        Projects
+      </a>
+      <a class="drawer-link px-3 py-3 rounded-md hover:bg-mist transition-colors flex items-center gap-3" href="./gallery.html">
+        <svg class="w-5 h-5 text-primary" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+        Gallery
+      </a>
+      <div class="pt-3 mt-2 border-t border-neutral">
+        <a href="./contact.html" class="btn-primary w-full">Contact Us</a>
+      </div>
+    </nav>
+  </aside>
+
+  <main>
+
+    <!-- =========================================================
+         HERO SECTION — Split layout (design.md: zig-zag principle)
+         ========================================================= -->
+    <section class="hero-grid relative overflow-hidden">
+      <div class="mx-auto max-w-[1280px] px-6 lg:px-8 pt-16 pb-24 lg:pt-20 lg:pb-28 min-h-[92dvh] grid lg:grid-cols-12 gap-10 items-center">
+
+        <!-- Hero Text -->
+        <div class="lg:col-span-6 lg:col-start-1 text-white">
+          <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-surface/15 border border-surface/30 backdrop-blur-sm text-surface text-xs font-mono tracking-widest uppercase mb-5">
+            <span class="h-1.5 w-1.5 rounded-full bg-surface animate-pulse"></span>
+            SUA Fakultas Kehutanan &amp; Lingkungan
+          </div>
+
+          <h1 class="text-white !leading-[1.08] font-bold fade-up">
+            Solusi Geospasial &amp; Lingkungan<br/>
+            <span class="text-surface">berbasis Ilmu Pengetahuan</span>
+          </h1>
+
+          <p class="mt-6 text-lg text-white/80 max-w-xl fade-up delay-1" style="max-width: 62ch">
+            ALGM Solutions menghubungkan keilmuan akademis IPB University, teknologi penginderaan jauh, dan praktik lapangan untuk menghadirkan analisis data spasial, perencanaan penggunaan lahan, dan pengelolaan sumber daya alam yang akurat, terukur, dan berkelanjutan.
+          </p>
+
+          <div class="mt-9 flex flex-wrap items-center gap-4 fade-up delay-2">
+            <a href="./projects.html" class="btn-accent">
+              Lihat Proyek Kami
+              <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+            </a>
+            <a href="./contact.html" class="px-5 py-3 rounded-md border border-white/25 text-white font-semibold hover:bg-white/10 transition-all inline-flex items-center gap-2">
+              <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+              Hubungi Kami
+            </a>
+          </div>
+
+          <!-- Quick metrics -->
+          <div class="mt-14 grid grid-cols-3 gap-6 max-w-lg fade-up delay-3">
+            <div>
+              <div class="font-mono text-2xl lg:text-3xl font-bold text-surface">50+</div>
+              <div class="text-xs text-white/70 mt-1 uppercase tracking-wide">Proyek Terselesaikan</div>
+            </div>
+            <div>
+              <div class="font-mono text-2xl lg:text-3xl font-bold text-surface">15+</div>
+              <div class="text-xs text-white/70 mt-1 uppercase tracking-wide">Peneliti &amp; Ahli</div>
+            </div>
+            <div>
+              <div class="font-mono text-2xl lg:text-3xl font-bold text-surface">8</div>
+              <div class="text-xs text-white/70 mt-1 uppercase tracking-wide">Tahun Pengalaman</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Hero Visual — Technical grid card composition -->
+        <div class="lg:col-span-6 lg:col-start-7 relative fade-up delay-2">
+          <div class="relative z-10 grid grid-cols-2 gap-4">
+            <!-- Card 1: Survey Photo (use real asset) -->
+            <div class="col-span-2 rounded-lg overflow-hidden border border-white/15 shadow-2xl bg-primary/20 backdrop-blur-sm">
+              <img src="./assets/survey-karet-sembawa-2.jpeg" alt="Survey lapangan oleh tim ALGM Solutions"
+                   class="w-full h-[240px] lg:h-[300px] object-cover"
+                   onerror="this.classList.add('hidden');this.nextElementSibling.classList.remove('hidden')" />
+              <div class="img-placeholder hidden h-[240px] lg:h-[300px] !rounded-none">
+                <span class="badge-meta">SUR-2023-011</span>
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/><circle cx="12" cy="13" r="4"/></svg>
+              </div>
+            </div>
+            <!-- Card 2: Map analysis mock -->
+            <div class="rounded-lg border border-white/10 bg-white/95 p-4 shadow-xl">
+              <div class="flex items-center justify-between mb-3">
+                <span class="font-mono text-[11px] text-primary font-semibold uppercase tracking-wider">NDVI Analysis</span>
+                <span class="w-2 h-2 rounded-full bg-success"></span>
+              </div>
+              <div class="aspect-[4/3] rounded-md grid-bg-fine flex items-center justify-center relative">
+                <!-- Stylized "map" graphic -->
+                <svg viewBox="0 0 120 100" class="w-[88%] h-[88%]">
+                  <defs>
+                    <linearGradient id="g1" x1="0" x2="1" y1="0" y2="1">
+                      <stop offset="0%" stop-color="#008000" stop-opacity="0.85"/>
+                      <stop offset="100%" stop-color="#00BFFF" stop-opacity="0.6"/>
+                    </linearGradient>
+                  </defs>
+                  <path d="M8,72 L26,58 L38,64 L52,40 L74,32 L94,48 L110,36 L110,90 L8,90 Z" fill="url(#g1)" stroke="#003366" stroke-width="0.8"/>
+                  <path d="M20,78 Q40,70 60,76 T100,72" fill="none" stroke="#FFA500" stroke-width="1.2" stroke-dasharray="3 2"/>
+                  <circle cx="50" cy="54" r="2.5" fill="#FFA500"/>
+                  <circle cx="82" cy="46" r="2.5" fill="#00BFFF"/>
+                </svg>
+              </div>
+              <div class="mt-3 grid grid-cols-2 gap-2 text-[11px] font-mono">
+                <div class="px-2 py-1 rounded bg-mist text-accent">Area: 1,284 Ha</div>
+                <div class="px-2 py-1 rounded bg-mist text-accent">ΔT: 0.6&deg;C</div>
+              </div>
+            </div>
+            <!-- Card 3: Instrument panel -->
+            <div class="rounded-lg border border-white/10 bg-primary text-white p-4 shadow-xl flex flex-col justify-between">
+              <div>
+                <span class="font-mono text-[11px] text-surface font-semibold uppercase tracking-wider">LiDAR Grid</span>
+                <div class="font-mono text-xs text-white/70 mt-2 block">Point Cloud Density</div>
+              </div>
+              <svg viewBox="0 0 100 70" class="w-full h-auto mt-3">
+                <g fill="#00BFFF">
+                  <circle cx="12" cy="42" r="1"/><circle cx="20" cy="30" r="1.1"/><circle cx="30" cy="52" r="1"/><circle cx="38" cy="24" r="1.3"/>
+                  <circle cx="48" cy="46" r="1"/><circle cx="56" cy="18" r="1.4"/><circle cx="66" cy="40" r="1.1"/><circle cx="74" cy="28" r="1.2"/>
+                  <circle cx="82" cy="50" r="1"/><circle cx="90" cy="34" r="1.3"/>
+                </g>
+                <g stroke="#00BFFF" stroke-opacity="0.35" stroke-width="0.5">
+                  <line x1="12" y1="42" x2="20" y2="30"/><line x1="20" y1="30" x2="30" y2="52"/><line x1="30" y1="52" x2="38" y2="24"/>
+                  <line x1="38" y1="24" x2="48" y2="46"/><line x1="48" y1="46" x2="56" y2="18"/><line x1="56" y1="18" x2="66" y2="40"/>
+                  <line x1="66" y1="40" x2="74" y2="28"/><line x1="74" y1="28" x2="82" y2="50"/><line x1="82" y1="50" x2="90" y2="34"/>
+                </g>
+              </svg>
+              <div class="mt-3 flex items-center justify-between">
+                <span class="font-mono text-lg text-surface">42.8</span>
+                <span class="font-mono text-[10px] text-white/60">pts/m&sup2; &nbsp;| &nbsp;RS-2024</span>
+              </div>
+            </div>
+          </div>
+          <!-- Decorative grid badge -->
+          <div class="absolute -bottom-6 -left-4 hidden md:flex items-center gap-2 px-4 py-2.5 rounded-md bg-white shadow-xl border border-neutral font-mono text-xs text-accent">
+            <span class="w-2 h-2 rounded-full bg-success"></span>
+            EPSG:4326 &middot; WGS84
+          </div>
+        </div>
+      </div>
+
+      <!-- Decorative divider -->
+      <svg viewBox="0 0 1440 48" preserveAspectRatio="none" class="block w-full h-10 lg:h-16 text-white fill-current -mb-1">
+        <path d="M0 48L120 42.7C240 37 480 27 720 24C960 21 1200 27 1320 29.3L1440 32V48H1320C1200 48 960 48 720 48C480 48 240 48 120 48H0Z"></path>
+      </svg>
+    </section>
+
+    <!-- =========================================================
+         ABOUT TEASER — Zig-zag (image right, text left)
+         ========================================================= -->
+    <section class="section-pad bg-white">
+      <div class="mx-auto max-w-[1280px] px-6 lg:px-8 grid lg:grid-cols-12 gap-12 items-center">
+
+        <!-- Visual -->
+        <div class="lg:col-span-6 stagger-item order-2 lg:order-1">
+          <div class="relative">
+            <div class="rounded-lg overflow-hidden shadow-md border border-neutral">
+              <img src="./assets/IMG-20230311-WA0044.jpg" alt="Tim ALGM Solutions sedang melakukan survei"
+                   class="w-full h-[380px] object-cover"
+                   onerror="this.classList.add('hidden');this.nextElementSibling.classList.remove('hidden')" />
+              <div class="img-placeholder hidden h-[380px] !rounded-none">
+                <span class="badge-meta">FLD-2023-003</span>
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/><circle cx="12" cy="13" r="4"/></svg>
+              </div>
+            </div>
+            <!-- Overlay tech card -->
+            <div class="hidden sm:block absolute -bottom-5 -right-5 w-56 bg-white rounded-lg shadow-lg p-4 border border-neutral">
+              <div class="flex items-center gap-3">
+                <div class="w-10 h-10 rounded-md bg-primary/10 flex items-center justify-center text-primary">
+                  <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
+                </div>
+                <div>
+                  <div class="text-[13px] font-bold text-primary">IPB University</div>
+                  <div class="font-mono text-[10px] text-accent/60">Fakultas Kehutanan &amp; Lingkungan</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Text -->
+        <div class="lg:col-span-5 lg:col-start-8 stagger-item order-1 lg:order-2" data-delay="120">
+          <span class="eyebrow">Tentang Kami</span>
+          <h2 class="mb-5">Menjembatani Ilmu, Teknologi, dan Aksi Nyata di Lapangan</h2>
+          <p class="text-accent/85 mb-4">
+            ALGM Solutions adalah unit layanan di bawah naungan Satuan Usaha Akademik (SUA) Fakultas Kehutanan dan Lingkungan, IPB University. Kami lahir dari keyakinan bahwa analisis spasial yang andal harus berakar pada metodologi ilmiah yang kokoh — bukan hanya visualisasi yang indah.
+          </p>
+          <p class="text-accent/85 mb-6">
+            Sejak berdiri, kami telah dipercaya oleh kementerian, pemerintah daerah, LSM, dan sektor swasta untuk memetakan tutupan lahan, menyusun rencana pengelolaan hutan, memodelkan erosi, hingga membangun sistem geoportal untuk publik.
+          </p>
+          <div class="grid sm:grid-cols-2 gap-4 mb-8">
+            <div class="flex items-start gap-3">
+              <div class="mt-0.5 w-9 h-9 shrink-0 rounded-md bg-surface/15 flex items-center justify-center text-primary">
+                <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><polyline points="20 6 9 17 4 12"/></svg>
+              </div>
+              <div>
+                <h4 class="font-semibold text-primary text-sm">Berbasis Akademis</h4>
+                <p class="text-xs text-accent/70 mt-0.5">Didukung peneliti dan pustaka IPB</p>
+              </div>
+            </div>
+            <div class="flex items-start gap-3">
+              <div class="mt-0.5 w-9 h-9 shrink-0 rounded-md bg-surface/15 flex items-center justify-center text-primary">
+                <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><polyline points="20 6 9 17 4 12"/></svg>
+              </div>
+              <div>
+                <h4 class="font-semibold text-primary text-sm">Teknologi Teruji</h4>
+                <p class="text-xs text-accent/70 mt-0.5">GIS, Remote Sensing, LiDAR, AI/ML</p>
+              </div>
+            </div>
+          </div>
+          <a href="./about.html" class="btn-secondary">
+            Selengkapnya Tentang ALGM
+            <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- =========================================================
+         SERVICES OVERVIEW — 5 services, asymmetric grid (NO 3-col equal)
+         ========================================================= -->
+    <section class="section-pad bg-mist grid-bg">
+      <div class="mx-auto max-w-[1280px] px-6 lg:px-8">
+
+        <div class="max-w-2xl stagger-item">
+          <span class="eyebrow">Layanan Kami</span>
+          <h2 class="mb-4">Lima Pilar Layanan untuk Kebutuhan Geospasial Anda</h2>
+          <p class="text-accent/80">
+            Dari penelitian dasar hingga implementasi geoportal enterprise, kami menyediakan layanan end-to-end yang dirancang untuk menghasilkan keputusan berbasis data.
+          </p>
+        </div>
+
+        <div class="mt-14 grid lg:grid-cols-12 gap-6">
+
+          <!-- Service 1 — Span 7 (big) -->
+          <div class="card service-card stagger-item lg:col-span-7 bg-white/80" data-delay="0">
+            <div class="grid md:grid-cols-5 gap-6 h-full items-center">
+              <div class="md:col-span-2">
+                <div class="w-14 h-14 rounded-lg bg-gradient-to-br from-primary to-primary-700 text-white flex items-center justify-center shadow-primary">
+                  <svg class="w-7 h-7" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
+                </div>
+              </div>
+              <div class="md:col-span-3">
+                <span class="font-mono text-[11px] uppercase tracking-wider text-surface-600">01 / Service</span>
+                <h3 class="mt-1 mb-2 text-primary">Research &amp; Consultancy</h3>
+                <p class="text-accent/80 text-sm mb-4">Kajian ilmiah, analisis dampak lingkungan (AMDAL), pemodelan spasial, dan penyusunan dokumen perencanaan lahan berbasis regulasi.</p>
+                <a href="./services.html#research" class="inline-flex items-center gap-1.5 text-sm font-semibold text-primary hover:text-primary-600">
+                  Pelajari selengkapnya
+                  <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+                </a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Service 2 — Span 5 -->
+          <div class="card service-card stagger-item lg:col-span-5 bg-white/80" data-delay="80">
+            <div class="flex flex-col gap-4 h-full">
+              <div class="flex items-start gap-4">
+                <div class="w-14 h-14 shrink-0 rounded-lg bg-surface/15 text-primary flex items-center justify-center">
+                  <svg class="w-7 h-7" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+                </div>
+                <div>
+                  <span class="font-mono text-[11px] uppercase tracking-wider text-surface-600">02 / Service</span>
+                  <h3 class="mt-1 text-primary">Survey &amp; Mapping</h3>
+                </div>
+              </div>
+              <p class="text-accent/80 text-sm">Pemetaan terestris (GPS/GNSS), drone mapping, survei vegetasi, hingga pembuatan peta tematik dengan akurasi tinggi.</p>
+              <a href="./services.html#survey" class="mt-auto inline-flex items-center gap-1.5 text-sm font-semibold text-primary hover:text-primary-600">
+                Pelajari selengkapnya
+                <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+              </a>
+            </div>
+          </div>
+
+          <!-- Service 3 — Span 5 -->
+          <div class="card service-card stagger-item lg:col-span-5 bg-white/80" data-delay="160">
+            <div class="flex flex-col gap-4 h-full">
+              <div class="flex items-start gap-4">
+                <div class="w-14 h-14 shrink-0 rounded-lg bg-warning/15 text-[#b45f00] flex items-center justify-center">
+                  <svg class="w-7 h-7" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>
+                </div>
+                <div>
+                  <span class="font-mono text-[11px] uppercase tracking-wider text-surface-600">03 / Service</span>
+                  <h3 class="mt-1 text-primary">Geospatial Training</h3>
+                </div>
+              </div>
+              <p class="text-accent/80 text-sm">Pelatihan GIS/QGIS, penginderaan jauh, machine learning untuk spasial, drone mapping, dan manajemen data keruangan.</p>
+              <a href="./services.html#training" class="mt-auto inline-flex items-center gap-1.5 text-sm font-semibold text-primary hover:text-primary-600">
+                Pelajari selengkapnya
+                <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+              </a>
+            </div>
+          </div>
+
+          <!-- Service 4 — Span 7 -->
+          <div class="card service-card stagger-item lg:col-span-7 bg-white/80" data-delay="240">
+            <div class="grid md:grid-cols-5 gap-6 h-full items-center">
+              <div class="md:col-span-2">
+                <div class="w-14 h-14 rounded-lg bg-gradient-to-br from-charcoal to-accent text-surface flex items-center justify-center shadow-md">
+                  <svg class="w-7 h-7" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+                </div>
+              </div>
+              <div class="md:col-span-3">
+                <span class="font-mono text-[11px] uppercase tracking-wider text-surface-600">04 / Service</span>
+                <h3 class="mt-1 mb-2 text-primary">Geoportal Development</h3>
+                <p class="text-accent/80 text-sm mb-4">Rancang bangun sistem informasi geografis berbasis web — mulai dari backend PostGIS, tile server, hingga dashboard interaktif.</p>
+                <a href="./services.html#geoportal" class="inline-flex items-center gap-1.5 text-sm font-semibold text-primary hover:text-primary-600">
+                  Pelajari selengkapnya
+                  <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+                </a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Service 5 — Span 12 full (accent bar) -->
+          <div class="stagger-item lg:col-span-12 rounded-lg overflow-hidden shadow-md border border-primary/20 bg-gradient-to-r from-primary via-[#003e7d] to-primary-700 text-white" data-delay="320">
+            <div class="grid md:grid-cols-5 gap-6 p-7 items-center">
+              <div class="md:col-span-1 flex md:justify-start justify-center">
+                <div class="w-16 h-16 rounded-xl bg-white/10 backdrop-blur flex items-center justify-center border border-white/15">
+                  <svg class="w-8 h-8 text-surface" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M2 20h.01"/><path d="M7 20V10"/><path d="M12 20V4"/><path d="M17 20v-6"/><path d="M22 20h.01"/></svg>
+                </div>
+              </div>
+              <div class="md:col-span-3 text-center md:text-left">
+                <span class="font-mono text-[11px] uppercase tracking-widest text-surface">05 / Service &mdash; Baru!</span>
+                <h3 class="mt-1 text-white !text-2xl">Instrument Rental &mdash; Sewa Alat Survei</h3>
+                <p class="text-white/80 text-sm mt-2">Sewa drone mapping, GNSS receiver, Total Station, sensor cuaca, dan alat lab kehutanan dengan pendamping teknisi kami.</p>
+              </div>
+              <div class="md:col-span-1 flex md:justify-end justify-center">
+                <a href="./services.html#rental" class="btn-accent !bg-surface/90 hover:!bg-surface text-primary-700">
+                  Lihat Katalog
+                </a>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- =========================================================
+         FEATURED PROJECTS (4 cards, asymmetric)
+         ========================================================= -->
+    <section class="section-pad bg-white">
+      <div class="mx-auto max-w-[1280px] px-6 lg:px-8">
+
+        <div class="flex flex-col md:flex-row md:items-end md:justify-between gap-6 mb-12 stagger-item">
+          <div class="max-w-2xl">
+            <span class="eyebrow">Portofolio</span>
+            <h2 class="mb-4">Proyek Terbaru Kami</h2>
+            <p class="text-accent/80">
+              Sebagian kecil pekerjaan yang telah kami selesaikan bersama klien dari sektor pemerintah, swasta, dan organisasi nirlaba.
+            </p>
+          </div>
+          <a href="./projects.html" class="btn-secondary self-start md:self-auto">
+            Lihat Semua Proyek
+            <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+          </a>
+        </div>
+
+        <div class="grid lg:grid-cols-12 gap-6">
+
+          <!-- Featured Big Project -->
+          <div class="project-card stagger-item lg:col-span-7 shadow-md" data-delay="0">
+            <img src="./assets/20230309_162627-1.jpg" alt="Pemetaan tutupan lahan Kalimantan"
+                 class="w-full h-[320px] object-cover rounded-lg"
+                 onerror="this.classList.add('hidden');this.nextElementSibling.classList.remove('hidden')" />
+            <div class="img-placeholder hidden h-[320px] !rounded-none">
+              <span class="badge-meta">PRJ-2024-017</span>
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/><circle cx="12" cy="13" r="4"/></svg>
+            </div>
+            <div class="overlay rounded-lg">
+              <div class="flex items-center gap-2 mb-2 flex-wrap">
+                <span class="px-2.5 py-0.5 rounded-full bg-surface text-primary-700 text-[11px] font-mono font-semibold">Remote Sensing</span>
+                <span class="px-2.5 py-0.5 rounded-full bg-white/15 border border-white/25 text-white text-[11px] font-mono">KLHK</span>
+              </div>
+              <h3 class="text-white text-xl font-bold mb-1">Pemetaan Tutupan Lahan &amp; Degradasi Hutan Kalimantan Tengah</h3>
+              <p class="text-white/80 text-sm">Analisis citra Sentinel-2 &amp; Landsat selama 10 tahun untuk 3 kabupaten, seluas 2,1 juta ha.</p>
+            </div>
+          </div>
+
+          <!-- Project 2 -->
+          <div class="project-card stagger-item lg:col-span-5 shadow-md" data-delay="80">
+            <img src="./assets/IMG_5600-1.jpg" alt="Pelatihan QGIS untuk pemerintah daerah"
+                 class="w-full h-[320px] object-cover rounded-lg"
+                 onerror="this.classList.add('hidden');this.nextElementSibling.classList.remove('hidden')" />
+            <div class="img-placeholder hidden h-[320px] !rounded-none">
+              <span class="badge-meta">TRN-2023-042</span>
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>
+            </div>
+            <div class="overlay rounded-lg">
+              <div class="flex items-center gap-2 mb-2 flex-wrap">
+                <span class="px-2.5 py-0.5 rounded-full bg-warning text-[#5c3400] text-[11px] font-mono font-semibold">Training</span>
+                <span class="px-2.5 py-0.5 rounded-full bg-white/15 border border-white/25 text-white text-[11px] font-mono">Pemda</span>
+              </div>
+              <h3 class="text-white text-xl font-bold mb-1">Pelatihan QGIS Lanjutan &mdash; 45 Staf BKPH Jabar</h3>
+              <p class="text-white/80 text-sm">3 hari on-site training: analisis DEM, hidrologi, dan pembuatan peta RPHD.</p>
+            </div>
+          </div>
+
+          <!-- Project 3 -->
+          <div class="project-card stagger-item lg:col-span-5 shadow-md" data-delay="160">
+            <div class="img-placeholder !rounded-none h-[240px]">
+              <span class="badge-meta">GIS-2024-003</span>
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+            </div>
+            <div class="overlay rounded-lg">
+              <div class="flex items-center gap-2 mb-2 flex-wrap">
+                <span class="px-2.5 py-0.5 rounded-full bg-success text-white text-[11px] font-mono font-semibold">Geoportal</span>
+                <span class="px-2.5 py-0.5 rounded-full bg-white/15 border border-white/25 text-white text-[11px] font-mono">Kehutanan</span>
+              </div>
+              <h3 class="text-white text-xl font-bold mb-1">Geoportal Monitoring Kawasan Hutan &mdash; Riau</h3>
+              <p class="text-white/80 text-sm">Sistem webGIS berbasis PostGIS + GeoServer + MapStore untuk DLHK Riau.</p>
+            </div>
+          </div>
+
+          <!-- Project 4 -->
+          <div class="project-card stagger-item lg:col-span-7 shadow-md" data-delay="240">
+            <img src="./assets/IMG-20230311-WA0044-edited.jpg" alt="Survey karet Sembawa"
+                 class="w-full h-[240px] object-cover rounded-lg"
+                 onerror="this.classList.add('hidden');this.nextElementSibling.classList.remove('hidden')" />
+            <div class="img-placeholder hidden h-[240px] !rounded-none">
+              <span class="badge-meta">SUR-2023-045</span>
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/><circle cx="12" cy="13" r="4"/></svg>
+            </div>
+            <div class="overlay rounded-lg">
+              <div class="flex items-center gap-2 mb-2 flex-wrap">
+                <span class="px-2.5 py-0.5 rounded-full bg-surface text-primary-700 text-[11px] font-mono font-semibold">Survey</span>
+                <span class="px-2.5 py-0.5 rounded-full bg-white/15 border border-white/25 text-white text-[11px] font-mono">Perkebunan</span>
+              </div>
+              <h3 class="text-white text-xl font-bold mb-1">Survei &amp; Inventarisasi Perkebunan Karet Rakyat &mdash; Sembawa</h3>
+              <p class="text-white/80 text-sm">Pemetaan 850 ha + drone orthomosaic + estimasi produktivitas berdasarkan NDVI.</p>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- =========================================================
+         PARTNERS / CLIENTS — Logo infinite scroll
+         ========================================================= -->
+    <section class="py-14 bg-mist border-y border-neutral overflow-hidden">
+      <div class="mx-auto max-w-[1280px] px-6 lg:px-8 mb-8">
+        <p class="text-center font-mono text-xs tracking-widest uppercase text-accent/60">
+          Dipercaya oleh lebih dari 40 mitra &mdash; instansi pusat &amp; daerah, BUMN, dan LSM
+        </p>
+      </div>
+      <div class="relative">
+        <div class="logo-track py-2">
+          <!-- Set 1 -->
+          <div class="shrink-0 flex items-center gap-14">
+            <div class="h-11 w-44 rounded-md bg-white border border-neutral flex items-center justify-center text-primary font-bold text-sm tracking-wide shadow-sm">KEMENTERIAN LHK</div>
+            <div class="h-11 w-40 rounded-md bg-white border border-neutral flex items-center justify-center text-accent font-bold text-sm shadow-sm">BRIN</div>
+            <div class="h-11 w-48 rounded-md bg-white border border-neutral flex items-center justify-center text-primary font-bold text-sm shadow-sm">PEMPROV JABAR</div>
+            <div class="h-11 w-36 rounded-md bg-white border border-neutral flex items-center justify-center text-accent font-bold text-sm shadow-sm">BKPH</div>
+            <div class="h-11 w-44 rounded-md bg-white border border-neutral flex items-center justify-center text-primary font-bold text-sm shadow-sm">BPDAS Citarum</div>
+            <div class="h-11 w-40 rounded-md bg-white border border-neutral flex items-center justify-center text-accent font-bold text-sm shadow-sm">WRI ID</div>
+            <div class="h-11 w-44 rounded-md bg-white border border-neutral flex items-center justify-center text-primary font-bold text-sm shadow-sm">IPB UNIVERSITY</div>
+          </div>
+          <!-- Set 2 duplicate for seamless loop -->
+          <div class="shrink-0 flex items-center gap-14">
+            <div class="h-11 w-44 rounded-md bg-white border border-neutral flex items-center justify-center text-primary font-bold text-sm tracking-wide shadow-sm">KEMENTERIAN LHK</div>
+            <div class="h-11 w-40 rounded-md bg-white border border-neutral flex items-center justify-center text-accent font-bold text-sm shadow-sm">BRIN</div>
+            <div class="h-11 w-48 rounded-md bg-white border border-neutral flex items-center justify-center text-primary font-bold text-sm shadow-sm">PEMPROV JABAR</div>
+            <div class="h-11 w-36 rounded-md bg-white border border-neutral flex items-center justify-center text-accent font-bold text-sm shadow-sm">BKPH</div>
+            <div class="h-11 w-44 rounded-md bg-white border border-neutral flex items-center justify-center text-primary font-bold text-sm shadow-sm">BPDAS Citarum</div>
+            <div class="h-11 w-40 rounded-md bg-white border border-neutral flex items-center justify-center text-accent font-bold text-sm shadow-sm">WRI ID</div>
+            <div class="h-11 w-44 rounded-md bg-white border border-neutral flex items-center justify-center text-primary font-bold text-sm shadow-sm">IPB UNIVERSITY</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- =========================================================
+         FINAL CTA
+         ========================================================= -->
+    <section class="section-pad relative overflow-hidden">
+      <div class="absolute inset-0 grid-bg-fine opacity-70"></div>
+      <div class="relative mx-auto max-w-4xl px-6 lg:px-8 text-center stagger-item">
+        <span class="eyebrow">Mari Berkolaborasi</span>
+        <h2 class="!text-3xl md:!text-4xl mb-5">
+          Punya proyek geospasial atau kebutuhan analisis lingkungan?
+        </h2>
+        <p class="text-accent/80 text-lg max-w-2xl mx-auto mb-9">
+          Tim peneliti dan teknisi kami siap membantu Anda menyusun metodologi, melaksanakan survei, hingga menyajikan data spasial dalam format yang dapat dipertanggungjawabkan secara ilmiah.
+        </p>
+        <div class="flex flex-wrap justify-center gap-4">
+          <a href="./contact.html" class="btn-primary">
+            Konsultasi Gratis
+            <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+          </a>
+          <a href="mailto:algm.solutions@apps.ipb.ac.id" class="btn-secondary">
+            <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+            algm.solutions@apps.ipb.ac.id
+          </a>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- =========================================================
+       FOOTER
+       ========================================================= -->
+  <footer class="bg-charcoal text-white/80">
+    <div class="mx-auto max-w-[1280px] px-6 lg:px-8 pt-16 pb-10">
+      <div class="grid lg:grid-cols-12 gap-10">
+        <!-- Brand + address -->
+        <div class="lg:col-span-5">
+          <div class="flex items-center gap-3 mb-5">
+            <img src="./assets/logo.png" alt="Logo ALGM" class="h-12 w-12 brightness-0 invert" />
+            <div>
+              <div class="font-bold text-white text-lg tracking-tight">ALGM Solutions</div>
+              <div class="font-mono text-[11px] text-white/55 tracking-wide uppercase">SUA FKL &middot; IPB University</div>
+            </div>
+          </div>
+          <p class="text-sm text-white/70 leading-relaxed mb-6 max-w-md">
+            Unit layanan analisis geospasial dan lingkungan di bawah naungan Satuan Usaha Akademik Fakultas Kehutanan dan Lingkungan, IPB University.
+          </p>
+          <div class="space-y-2 text-sm">
+            <div class="flex items-start gap-3">
+              <svg class="w-4 h-4 mt-0.5 shrink-0 text-surface" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+              <span>Kampus IPB Darmaga, Jl. Meranti Wing 20 Lt. 3, Bogor 16680, Jawa Barat, Indonesia</span>
+            </div>
+            <div class="flex items-center gap-3">
+              <svg class="w-4 h-4 shrink-0 text-surface" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+              <a href="mailto:algm.solutions@apps.ipb.ac.id" class="hover:text-surface">algm.solutions@apps.ipb.ac.id</a>
+            </div>
+            <div class="flex items-center gap-3">
+              <svg class="w-4 h-4 shrink-0 text-surface" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+              <span>+62 (251) 862-2949</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Links 1 -->
+        <div class="lg:col-span-2">
+          <h4 class="text-white font-semibold mb-4 text-sm uppercase tracking-wider">Navigasi</h4>
+          <ul class="space-y-2.5 text-sm">
+            <li><a href="./index.html" class="hover:text-surface transition-colors">Home</a></li>
+            <li><a href="./about.html" class="hover:text-surface transition-colors">About Us</a></li>
+            <li><a href="./services.html" class="hover:text-surface transition-colors">Services</a></li>
+            <li><a href="./team.html" class="hover:text-surface transition-colors">Our Team</a></li>
+            <li><a href="./projects.html" class="hover:text-surface transition-colors">Projects</a></li>
+            <li><a href="./gallery.html" class="hover:text-surface transition-colors">Gallery</a></li>
+            <li><a href="./contact.html" class="hover:text-surface transition-colors">Contact</a></li>
+          </ul>
+        </div>
+
+        <!-- Links 2 -->
+        <div class="lg:col-span-3">
+          <h4 class="text-white font-semibold mb-4 text-sm uppercase tracking-wider">Layanan Unggulan</h4>
+          <ul class="space-y-2.5 text-sm">
+            <li><a href="./services.html#research" class="hover:text-surface">Research &amp; Consultancy</a></li>
+            <li><a href="./services.html#survey" class="hover:text-surface">Survey &amp; Mapping</a></li>
+            <li><a href="./services.html#training" class="hover:text-surface">Geospatial Training</a></li>
+            <li><a href="./services.html#geoportal" class="hover:text-surface">Geoportal Development</a></li>
+            <li><a href="./services.html#rental" class="hover:text-surface">Instrument Rental</a></li>
+          </ul>
+        </div>
+
+        <!-- Socials + Newsletter -->
+        <div class="lg:col-span-2">
+          <h4 class="text-white font-semibold mb-4 text-sm uppercase tracking-wider">Koneksi</h4>
+          <div class="flex gap-2 flex-wrap">
+            <a href="#" aria-label="Instagram" class="w-10 h-10 rounded-md bg-white/8 hover:bg-surface/20 text-white hover:text-surface flex items-center justify-center transition-colors">
+              <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+            </a>
+            <a href="#" aria-label="LinkedIn" class="w-10 h-10 rounded-md bg-white/8 hover:bg-surface/20 text-white hover:text-surface flex items-center justify-center transition-colors">
+              <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-4 0v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+            </a>
+            <a href="#" aria-label="YouTube" class="w-10 h-10 rounded-md bg-white/8 hover:bg-surface/20 text-white hover:text-surface flex items-center justify-center transition-colors">
+              <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22.54 6.42a2.78 2.78 0 0 0-1.94-2C18.88 4 12 4 12 4s-6.88 0-8.6.46a2.78 2.78 0 0 0-1.94 2A29 29 0 0 0 1 11.75a29 29 0 0 0 .46 5.33A2.78 2.78 0 0 0 3.4 19c1.72.46 8.6.46 8.6.46s6.88 0 8.6-.46a2.78 2.78 0 0 0 1.94-2 29 29 0 0 0 .46-5.25 29 29 0 0 0-.46-5.33z"/><polygon points="9.75 15.02 15.5 11.75 9.75 8.48 9.75 15.02"/></svg>
+            </a>
+            <a href="#" aria-label="GitHub / Lab" class="w-10 h-10 rounded-md bg-white/8 hover:bg-surface/20 text-white hover:text-surface flex items-center justify-center transition-colors">
+              <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"/></svg>
+            </a>
+          </div>
+
+          <div class="mt-7">
+            <div class="text-xs text-white/55 font-mono uppercase tracking-wider mb-2">NIB &middot; Legal</div>
+            <div class="font-mono text-[13px] text-white/80">230924028xxxx</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="border-t border-white/10 mt-12 pt-6 flex flex-col md:flex-row md:items-center md:justify-between gap-3 text-xs text-white/50">
+        <div>&copy; <span id="current-year"></span> ALGM Solutions &mdash; Fakultas Kehutanan dan Lingkungan, IPB University. Seluruh hak cipta dilindungi.</div>
+        <div class="flex items-center gap-5">
+          <a href="#" class="hover:text-surface">Kebijakan Privasi</a>
+          <a href="#" class="hover:text-surface">Sitemap</a>
+          <span class="font-mono">v1.0.0</span>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Scroll to top -->
+  <button id="scroll-top" class="scroll-top" aria-label="Kembali ke atas">
+    <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><polyline points="18 15 12 9 6 15"/></svg>
+  </button>
+
+  <!-- Main JS -->
+  <script src="./js/main.js"></script>
+
+  <!-- Initialize Lucide icons -->
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      if (window.lucide) lucide.createIcons();
+    });
+  </script>
+</body>
+</html>

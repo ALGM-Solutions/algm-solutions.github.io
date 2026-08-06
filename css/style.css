@@ -1,0 +1,587 @@
+/* ======================================================
+   ALGM Solutions — Custom Stylesheet
+   Design Tokens based on design.md: "Estilo de Tecnologia de Precisao"
+   ====================================================== */
+
+/* ---------- Design Tokens (CSS Custom Properties) ---------- */
+:root {
+  /* Colors — Primary Palette */
+  --color-primary: #003366;
+  --color-primary-600: #002a55;
+  --color-primary-700: #002244;
+  --color-secondary: #C0C0C0;
+  --color-tertiary: #FFFFFF;
+  --color-neutral: #E0E0E0;
+  --color-surface: #00BFFF;
+  --color-surface-600: #009fcc;
+  --color-accent: #36454F;
+
+  /* Extended Colors */
+  --color-success: #008000;
+  --color-warning: #FFA500;
+  --color-charcoal: #2d3748;
+  --color-mist: #f5f7fa;
+
+  /* Typography */
+  --font-sans: 'Roboto', system-ui, -apple-system, sans-serif;
+  --font-mono: 'JetBrains Mono', ui-monospace, monospace;
+  --lh-body: 1.6;
+
+  /* Spacing Rhythm — Base 8px */
+  --space-1: 0.25rem;
+  --space-2: 0.5rem;
+  --space-3: 0.75rem;
+  --space-4: 1rem;
+  --space-6: 1.5rem;
+  --space-8: 2rem;
+  --space-12: 3rem;
+  --space-16: 4rem;
+
+  /* Radius */
+  --r-sm: 0.25rem;
+  --r-md: 0.5rem;
+  --r-lg: 0.75rem;
+
+  /* Shadows */
+  --shadow-sm: 0 1px 3px rgba(0, 51, 102, 0.06);
+  --shadow-md: 0 2px 12px rgba(0, 51, 102, 0.08);
+  --shadow-lg: 0 8px 24px rgba(0, 51, 102, 0.10);
+  --shadow-primary: 0 4px 14px rgba(0, 51, 102, 0.18);
+
+  /* Motion */
+  --dur-fast: 180ms;
+  --dur-base: 260ms;
+  --dur-slow: 420ms;
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+
+  /* Layout */
+  --container: 1280px;
+}
+
+/* ---------- Font Imports ---------- */
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&family=Roboto:wght@300;400;500;700&display=swap');
+
+/* ---------- Base Reset & Typography ---------- */
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 80px;
+}
+
+body {
+  font-family: var(--font-sans);
+  line-height: var(--lh-body);
+  color: var(--color-accent);
+  background-color: var(--color-tertiary);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-weight: 700;
+  color: var(--color-primary);
+  letter-spacing: -0.01em;
+  line-height: 1.2;
+}
+
+h1 { font-size: clamp(2.25rem, 5vw, 3.75rem); }
+h2 { font-size: clamp(1.75rem, 3vw, 2.5rem); }
+h3 { font-size: clamp(1.25rem, 2vw, 1.75rem); }
+
+.font-mono {
+  font-family: var(--font-mono);
+}
+
+/* ---------- Technical Grid Background (design.md) ---------- */
+.grid-bg {
+  background-image:
+    linear-gradient(to right, rgba(0, 51, 102, 0.04) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(0, 51, 102, 0.04) 1px, transparent 1px);
+  background-size: 32px 32px;
+}
+
+.grid-bg-fine {
+  background-image:
+    linear-gradient(to right, rgba(0, 191, 255, 0.08) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(0, 191, 255, 0.08) 1px, transparent 1px);
+  background-size: 16px 16px;
+}
+
+.hero-grid {
+  background-image:
+    linear-gradient(rgba(0, 51, 102, 0.92), rgba(0, 51, 102, 0.88)),
+    linear-gradient(to right, rgba(0, 191, 255, 0.08) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(0, 191, 255, 0.08) 1px, transparent 1px);
+  background-size: cover, 40px 40px, 40px 40px;
+}
+
+/* ---------- Custom Button Styles (design.md components) ---------- */
+.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1.5rem;
+  background-color: var(--color-primary);
+  color: var(--color-neutral);
+  border-radius: var(--r-md);
+  font-weight: 600;
+  font-size: 0.95rem;
+  letter-spacing: 0.01em;
+  transition:
+    background-color var(--dur-fast) var(--ease-out),
+    transform var(--dur-fast) var(--ease-out),
+    box-shadow var(--dur-fast) var(--ease-out);
+  box-shadow: var(--shadow-sm);
+  text-decoration: none;
+  border: 1px solid transparent;
+}
+.btn-primary:hover {
+  background-color: var(--color-primary-600);
+  box-shadow: var(--shadow-primary);
+  transform: translateY(-1px);
+  color: var(--color-tertiary);
+}
+.btn-primary:active {
+  transform: translateY(0) scale(0.99);
+}
+
+.btn-secondary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1.5rem;
+  background-color: transparent;
+  color: var(--color-primary);
+  border: 1.5px solid var(--color-primary);
+  border-radius: var(--r-md);
+  font-weight: 600;
+  font-size: 0.95rem;
+  transition:
+    background-color var(--dur-fast) var(--ease-out),
+    color var(--dur-fast) var(--ease-out),
+    transform var(--dur-fast) var(--ease-out);
+  text-decoration: none;
+}
+.btn-secondary:hover {
+  background-color: rgba(0, 51, 102, 0.06);
+  transform: translateY(-1px);
+}
+
+.btn-accent {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1.5rem;
+  background-color: var(--color-surface);
+  color: var(--color-primary-700);
+  border-radius: var(--r-md);
+  font-weight: 600;
+  font-size: 0.95rem;
+  transition: all var(--dur-fast) var(--ease-out);
+  text-decoration: none;
+}
+.btn-accent:hover {
+  background-color: var(--color-surface-600);
+  color: var(--color-tertiary);
+  transform: translateY(-1px);
+  box-shadow: var(--shadow-md);
+}
+
+/* ---------- Cards ---------- */
+.card {
+  background-color: var(--color-tertiary);
+  border: 1px solid var(--color-neutral);
+  border-radius: var(--r-md);
+  padding: 1.5rem;
+  box-shadow: var(--shadow-sm);
+  transition:
+    transform var(--dur-base) var(--ease-out),
+    box-shadow var(--dur-base) var(--ease-out),
+    border-color var(--dur-base) var(--ease-out);
+}
+.card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-lg);
+  border-color: rgba(0, 191, 255, 0.35);
+}
+
+/* ---------- Service Card Hover Highlight ---------- */
+.service-card {
+  position: relative;
+  overflow: hidden;
+}
+.service-card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0;
+  width: 4px;
+  height: 0%;
+  background: linear-gradient(to bottom, var(--color-primary), var(--color-surface));
+  transition: height var(--dur-base) var(--ease-out);
+}
+.service-card:hover::before {
+  height: 100%;
+}
+
+/* ---------- Input / Form (design.md) ---------- */
+.form-label {
+  display: block;
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: var(--color-primary-700);
+  margin-bottom: 0.4rem;
+  letter-spacing: 0.02em;
+}
+.form-input,
+.form-textarea,
+.form-select {
+  width: 100%;
+  padding: 0.7rem 1rem;
+  border: 1px solid var(--color-neutral);
+  border-radius: var(--r-md);
+  background-color: var(--color-tertiary);
+  color: var(--color-accent);
+  font-family: var(--font-sans);
+  font-size: 0.95rem;
+  transition: all var(--dur-fast) var(--ease-out);
+}
+.form-input:focus,
+.form-textarea:focus,
+.form-select:focus {
+  outline: none;
+  border-color: var(--color-surface);
+  box-shadow: 0 0 0 2px rgba(0, 191, 255, 0.18);
+}
+.form-textarea {
+  resize: vertical;
+  min-height: 120px;
+}
+
+/* ---------- Navigation Active State ---------- */
+.nav-link {
+  position: relative;
+  padding: 0.4rem 0.1rem;
+  font-weight: 500;
+  color: var(--color-accent);
+  transition: color var(--dur-fast) var(--ease-out);
+  text-decoration: none;
+}
+.nav-link::after {
+  content: '';
+  position: absolute;
+  left: 0; bottom: -4px;
+  width: 100%;
+  height: 2px;
+  background-color: var(--color-primary);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform var(--dur-base) var(--ease-out);
+}
+.nav-link:hover,
+.nav-link.active {
+  color: var(--color-primary);
+}
+.nav-link:hover::after,
+.nav-link.active::after {
+  transform: scaleX(1);
+}
+
+/* ---------- Entry Animation (design.md) ---------- */
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.fade-up {
+  animation: fadeUp var(--dur-slow) var(--ease-out) both;
+}
+
+.delay-1 { animation-delay: 80ms; }
+.delay-2 { animation-delay: 160ms; }
+.delay-3 { animation-delay: 240ms; }
+.delay-4 { animation-delay: 320ms; }
+.delay-5 { animation-delay: 400ms; }
+.delay-6 { animation-delay: 480ms; }
+
+/* ---------- Staggered list entry ---------- */
+.stagger-item {
+  opacity: 0;
+  transform: translateY(16px);
+}
+.stagger-item.in-view {
+  animation: fadeUp var(--dur-slow) var(--ease-out) both;
+}
+
+/* ---------- Team / Project Image Placeholder SVG Base ---------- */
+.avatar-placeholder {
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  background: linear-gradient(135deg, var(--color-mist) 0%, var(--color-neutral) 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  border-radius: var(--r-md);
+}
+.avatar-placeholder svg {
+  width: 55%;
+  height: 55%;
+  opacity: 0.55;
+  color: var(--color-primary);
+}
+
+/* ---------- SVG Placeholder for Photos ---------- */
+.img-placeholder {
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  background:
+    linear-gradient(to right, rgba(0, 51, 102, 0.06) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(0, 51, 102, 0.06) 1px, transparent 1px),
+    linear-gradient(135deg, #eef4fa 0%, #d8e6f2 100%);
+  background-size: 20px 20px, 20px 20px, 100% 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  position: relative;
+  border-radius: var(--r-md);
+}
+.img-placeholder svg {
+  width: 22%;
+  color: var(--color-primary);
+  opacity: 0.4;
+}
+.img-placeholder .badge-meta {
+  position: absolute;
+  top: 0.5rem; left: 0.5rem;
+  padding: 0.2rem 0.55rem;
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  background-color: var(--color-primary);
+  color: var(--color-tertiary);
+  border-radius: var(--r-sm);
+}
+
+/* ---------- Filter Pills ---------- */
+.filter-pill {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.5rem 1rem;
+  background-color: var(--color-mist);
+  color: var(--color-accent);
+  border-radius: 9999px;
+  font-size: 0.875rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all var(--dur-fast) var(--ease-out);
+  border: 1px solid transparent;
+}
+.filter-pill:hover {
+  background-color: rgba(0, 51, 102, 0.08);
+  color: var(--color-primary);
+}
+.filter-pill.is-active {
+  background-color: var(--color-primary);
+  color: var(--color-tertiary);
+  box-shadow: var(--shadow-sm);
+}
+
+/* ---------- Lightbox ---------- */
+.lightbox {
+  position: fixed;
+  inset: 0;
+  background-color: rgba(0, 10, 22, 0.92);
+  z-index: 300;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1.5rem;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity var(--dur-base) var(--ease-out);
+}
+.lightbox.is-open {
+  opacity: 1;
+  pointer-events: auto;
+}
+.lightbox img,
+.lightbox .lb-placeholder {
+  max-width: min(92vw, 1100px);
+  max-height: 86vh;
+  border-radius: var(--r-md);
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4);
+  transform: scale(0.96);
+  transition: transform var(--dur-base) var(--ease-out);
+}
+.lightbox.is-open img,
+.lightbox.is-open .lb-placeholder {
+  transform: scale(1);
+}
+.lightbox-close {
+  position: absolute;
+  top: 1.25rem; right: 1.25rem;
+  width: 44px; height: 44px;
+  border-radius: 50%;
+  background-color: rgba(255,255,255,0.12);
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: background-color var(--dur-fast) var(--ease-out);
+}
+.lightbox-close:hover {
+  background-color: rgba(255,255,255,0.22);
+}
+
+/* ---------- Section Spacing (design.md) ---------- */
+.section-pad {
+  padding-top: clamp(3rem, 7vw, 6rem);
+  padding-bottom: clamp(3rem, 7vw, 6rem);
+}
+
+/* ---------- Eyebrow / Section Label ---------- */
+.eyebrow {
+  display: inline-block;
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  font-weight: 500;
+  color: var(--color-surface-600);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding: 0.25rem 0.75rem;
+  background-color: rgba(0, 191, 255, 0.12);
+  border-radius: var(--r-sm);
+  margin-bottom: 1rem;
+}
+
+/* ---------- Utility: Hidden scrollbars for sliders ---------- */
+.no-scrollbar::-webkit-scrollbar { display: none; }
+.no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+
+/* ---------- Map embed wrapper ---------- */
+.map-embed {
+  filter: grayscale(0.15) contrast(1.05);
+  border-radius: var(--r-md);
+  overflow: hidden;
+  box-shadow: var(--shadow-md);
+  border: 1px solid var(--color-neutral);
+}
+
+/* ---------- Mobile nav drawer ---------- */
+.mobile-drawer {
+  position: fixed;
+  top: 0; right: 0;
+  width: min(84vw, 320px);
+  height: 100dvh;
+  background-color: var(--color-tertiary);
+  box-shadow: -12px 0 32px rgba(0, 51, 102, 0.12);
+  z-index: 210;
+  transform: translateX(100%);
+  transition: transform var(--dur-base) var(--ease-out);
+  display: flex;
+  flex-direction: column;
+}
+.mobile-drawer.is-open {
+  transform: translateX(0);
+}
+.drawer-backdrop {
+  position: fixed;
+  inset: 0;
+  background-color: rgba(0, 34, 68, 0.5);
+  z-index: 205;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity var(--dur-base) var(--ease-out);
+}
+.drawer-backdrop.is-open {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+/* ---------- Project Card Overlay ---------- */
+.project-card {
+  position: relative;
+  overflow: hidden;
+  border-radius: var(--r-md);
+  cursor: pointer;
+}
+.project-card .overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(0,34,68,0.88) 0%, rgba(0,34,68,0.2) 55%, transparent 100%);
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: 1.25rem;
+  color: #fff;
+  opacity: 0;
+  transition: opacity var(--dur-base) var(--ease-out);
+}
+.project-card:hover .overlay {
+  opacity: 1;
+}
+
+/* ---------- Gallery item hover zoom ---------- */
+.gallery-thumb {
+  cursor: pointer;
+  overflow: hidden;
+  border-radius: var(--r-md);
+}
+.gallery-thumb img,
+.gallery-thumb .img-placeholder {
+  transition: transform var(--dur-slow) var(--ease-out);
+}
+.gallery-thumb:hover img,
+.gallery-thumb:hover .img-placeholder {
+  transform: scale(1.05);
+}
+
+/* ---------- Scroll-to-top button ---------- */
+.scroll-top {
+  position: fixed;
+  bottom: 1.5rem;
+  right: 1.5rem;
+  width: 48px; height: 48px;
+  border-radius: 50%;
+  background-color: var(--color-primary);
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  z-index: 99;
+  opacity: 0;
+  transform: translateY(20px);
+  pointer-events: none;
+  transition: all var(--dur-base) var(--ease-out);
+  box-shadow: var(--shadow-primary);
+}
+.scroll-top.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
+}
+.scroll-top:hover {
+  background-color: var(--color-primary-600);
+}
+
+/* ---------- Partners / Clients logo slider ---------- */
+@keyframes logoScroll {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+.logo-track {
+  display: flex;
+  width: max-content;
+  animation: logoScroll 30s linear infinite;
+  gap: 3.5rem;
+}
